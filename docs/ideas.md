@@ -11,4 +11,5 @@ This will be very useful for college students living off campus like us, because
 Another reason, we love this idea is the huge amount of support small businesses, from grocery stores and restaurants to farms and other stakeholders, could receive with a guaranteed stream of revenue\
 
 # Important components
-The user shall choose from a set of meals set by the restaurants and choose the days, the meal of the day (breakfast, lunch or dinner) for which they want it to be delivered. The user must choose at least 5 meals in a week. The number of weeks
+The user shall choose from a set of meals set by the restaurants and choose the days, the meal of the day (breakfast, lunch or dinner) for which they want it to be delivered. The user must choose at least 5 meals in a week. Once subscribed the user will receive the specified meals a the specified times (breakfast, lunch or dinner) and on the specific days of the week until the user unsubscribes.\
+NOTE: These specs are subject to change
