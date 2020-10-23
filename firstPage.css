@@ -1,0 +1,13 @@
+#Headline-Page{
+    color: burlywood;
+    font-family: cursive;
+    text-align: center;
+}
+
+#Image-Banner{
+    background-image: url("Background-Bread.jpg");
+}
+
+.heading1Padding{
+    padding: 20px;
+}
