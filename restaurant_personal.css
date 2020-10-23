@@ -1,0 +1,77 @@
+body{
+    height: 100%;
+}
+html{
+    height: 100%;
+}
+
+#wrapper{
+    height: 100%;
+}
+
+#sidenav {
+    background-color: #f8961e;
+  }
+
+.sidenav-header {
+    width: 100%;
+    background: #e85d04;;
+  }
+
+.sidenav-header #mdlogo{
+    font-size: 30px;
+    margin-left:20px;
+    margin-top: 20px;
+    margin-bottom: 30px;
+}
+
+.sidenav-header #restaurant-name{
+    font-size: 18px;
+    margin-left:20px;
+    margin-top: 10px;
+    margin-bottom: 20px;
+}
+
+
+  
+  /* The navigation menu links */
+.sidenav-content a{
+    padding: 20px 8px 6px 16px;
+    text-decoration: none;
+    font-size: 16px;
+    color: black;
+    display: block;
+}
+  
+  /* When you mouse over the navigation links, change their color */
+.sidenav-content a:hover {
+font-weight: bolder;
+}
+
+
+.collapsible.collapse.show,
+.collapsible.collapse.show + .col {
+    transition: .18s ease;
+    transform: translate(0,0,0);
+    left: 0;
+}
+
+.collapsible.collapse,
+.collapsible.collapsing,
+.collapsible.collapsing + #sidenav {
+    transition: .18s ease;
+    transform: translate(-25%,0,0);
+    z-index: 1050;
+    left: -25%;
+}
+
+/* Trying sldie in animations */
+/* #sidenav .sidenav-content .sidenav-header{
+    -moz-animation: slidein 300ms forwards;
+    -o-animation: slidein 300ms forwards;
+    -webkit-animation: slidein 300ms forwards;
+} */
+
+#sidenav .sidenav-header .sidenav-content{
+    animation: slidein 3s;
+}
