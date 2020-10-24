@@ -4,10 +4,31 @@
     text-align: center;
 }
 
-#Image-Banner{
+.Image-Banner{
+    width: auto;
+    height: 400px;
     background-image: url("Background-Bread.jpg");
+}
+
+.center{
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+
+.Text-Banner{
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-style: italic;
+    font-weight: bolder;
+    text-align: center;
 }
 
 .heading1Padding{
     padding: 20px;
+}
+
+.Headline-Section{
+
 }
