@@ -65,14 +65,10 @@ tertiary: #F64C72
 
 
 
-/*card template*/
-.card-layout{
-}
-
 /*food product's image class*/
 .product-img{
-    border-radius: 10%;
-
+    width: 100%;
+    height: 100%;
 }
 
 /*
