@@ -10,65 +10,121 @@
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-    <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
-</head>
-<body>
-    <!-- <nav class="navbar navbar-dark bg-dark">
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsible" aria-expanded="false" aria-controls="collapsible">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-    </nav>
-        <div id='collapsible' class='collapse'>
-            <nav class="sidenav" class="font-weight-light">
-                <div class='sidenav-header'>
-                    <label id='mdlogo'>MealDog</label>
-                    <label id='restaurant-name'>Antonio's Pizza</label>
-                </div>
-                <div class='sidenav-content'>
-                    <a href="#">Home</a>
-                    <a href="#">Storefront</a>
-                    <a href="#">Customers</a>
-                    <a href="#">Profile</a>
-                </div>
-            </nav>
-        </div> -->
+    <script src="https://kit.fontawesome.com/1591ed1f7d.js" crossorigin="anonymous"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap" rel="stylesheet">
+  </head>
+  <body>
     <div id='wrapper'>
-        <div class="container-fluid h-100">
-            <div class="row h-100">
-              <div class="col-md-1 collapse.show m-0 p-0 h-100" id="sidenav">
-                <div class='sidenav-header'>
-                    <label id='mdlogo'>MealDog</label>
-                    <label id='restaurant-name'>Antonio's Pizza</label>
-                </div>
-                <ul class="nav flex-column sticky-top sidenav-content">
-                  <li class="nav-item">
-                    <a href="#"><i class="fas fa-home-lg-alt"></i>Home</a>
-                  </li>
-                  <li class="nav-item">
-                    <a href="#">Storefront</a>
-                  </li>
-                  <li class="nav-item">
-                    <a href="#">Customers</a>
-                  </li>
-                  <li class="nav-item">
-                    <a href="#">Profile</a>
-                  </li>
-                </ul>
-              </div>
-              <div class="col">
-                <div class="row">
-                  <div class="col-12">
-                    <nav class="navbar navbar-light bg-light">
-                    <button class="navbar-toggler" data-toggle="collapse" href="#sidenav" role="button">
-                        <span class="navbar-toggler-icon"></span>
-                    </button>  
-                    </nav> 
-                  </div>
-                </div>
-                </div>
+      <div class="container-fluid h-100">
+        <div class="row h-100">
+          <div class="col-md-2 collapse.show m-0 p-0 h-100" id="sidenav">
+            <div class='sidenav-header'>
+              <label id='mdlogo'>MealDog</label>
+              <div><label id='restaurant-name'>Mr Saigon</label></div>
             </div>
+            <ul class="nav flex-column sticky-top sidenav-content">
+              <li class="nav-item">
+                <a href="/restaurant_personal.html"><i class="fas fa-home"></i> Home</a>
+              </li>
+              <li class="nav-item">
+                <a href="#"><i class="fas fa-store"></i> Storefront</a>
+              </li>
+              <li class="nav-item">
+                <a href="/restaurant_cust_list.html"><i class="fas fa-users"></i> Customers</a>
+              </li>
+              <li class="nav-item">
+                <a href="#"><i class="fas fa-user"></i> Profile</a>
+              </li>
+            </ul>
+          </div>
+
+          <!--content column-->
+          <div class="col">
+
+            <!-- top navbar -->
+            <div class="row">
+              <div class="col-12">
+                <nav id="topbar" class="navbar navbar-light">
+                <button class="navbar-toggler" data-toggle="collapse" href="#sidenav" role="button">
+                    <span class="navbar-toggler-icon"></span>
+                </button>  
+                <a href="#">
+                  <i class="fas fa-user-circle"></i>
+                </a>
+                </nav> 
+              </div>
+            </div>
+
+
+            <div class="row">
+              <div class="col-1">
+                <div class="day-selector">
+                  <select class="form-control" id="sel1">
+                    <option>Today</option>
+                    <option>Monday</option>
+                    <option>Tuesday</option>
+                    <option>Wednesday</option>
+                    <option>Thursday</option>
+                    <option>Friday</option>
+                    <option>Saturday</option>
+                  </select>
+                </div>
+              </div>
+              <div class="center-text col content">Breakfast</div>
+            </div>
+            <div class="row content">
+              <!-- Grid of meal cards -->
+              <div class="meal-grid container">
+                <div class="row">
+                  <div class="col">1</div>
+                  <div class="col">2</div>
+                  <div class="col">3</div>
+                </div>
+                <div class="row">
+                  <div class="col">4</div>
+                  <div class="col">5</div>
+                  <div class="col">6</div>
+                </div>
+              </div>
+            </div>
+            <div class="row content">
+              <div class="center-text">Lunch</div>
+            </div>
+            <div class="row content">
+              <!-- Grid of meal cards -->
+              <div class="meal-grid container">
+                <div class="row">
+                  <div class="col">1</div>
+                  <div class="col">2</div>
+                  <div class="col">3</div>
+                </div>
+                <div class="row">
+                  <div class="col">4</div>
+                  <div class="col">5</div>
+                  <div class="col">6</div>
+                </div>
+              </div>
+            </div>
+            <div class="row content">
+              <div class="center-text">Dinner</div>
+            </div>
+            <div class="row content">
+              <!-- Grid of meal cards -->
+              <div class=" meal-grid container">
+                <div class="row">
+                  <div class="col">1</div>
+                  <div class="col">2</div>
+                  <div class="col">3</div>
+                </div>
+                <div class="row">
+                  <div class="col">4</div>
+                  <div class="col">5</div>
+                  <div class="col">6</div>
+                </div>
+              </div>
+            </div>
+          </div> <!--content column-->
         </div>
-    </div>       
-    
-</body>
+    </div>      
+  </body>
 </html>

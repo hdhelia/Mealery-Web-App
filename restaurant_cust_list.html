@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MealDog - Your favorite restaurants on your plate, all day every day</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+    <link rel="stylesheet" href="restaurant_personal.css">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script src="https://kit.fontawesome.com/1591ed1f7d.js" crossorigin="anonymous"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div id='wrapper'>
+        <div class="container-fluid h-100">
+            <div class="row h-100">
+                <div class="col-md-2 collapse.show m-0 p-0 h-100" id="sidenav">
+                    <div class='sidenav-header'>
+                        <label id='mdlogo'>MealDog</label>
+                        <div><label id='restaurant-name'>Mr Saigon</label></div>
+                    </div>
+                    <ul class="nav flex-column sticky-top sidenav-content">
+                        <li class="nav-item">
+                        <a href="/restaurant_personal.html"><i class="fas fa-home"></i> Home</a>
+                        </li>
+                        <li class="nav-item">
+                        <a href="#"><i class="fas fa-store"></i> Storefront</a>
+                        </li>
+                        <li class="nav-item">
+                        <a href="/restaurant_cust_list.html"><i class="fas fa-users"></i> Customers</a>
+                        </li>
+                        <li class="nav-item">
+                        <a href="#"><i class="fas fa-user"></i> Profile</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col">
+
+                    <!-- top navbar -->
+                    <div class="row">
+                        <div class="col-12">
+                            <nav id="topbar" class="navbar navbar-light">
+                            <button class="navbar-toggler" data-toggle="collapse" href="#sidenav" role="button">
+                                <span class="navbar-toggler-icon"></span>
+                            </button>  
+                            <a href="#">
+                                <i class="fas fa-user-circle"></i>
+                            </a>
+                            </nav> 
+                        </div>
+                    </div>
+                    <div class="center-text">Customers</div>
+                    <!-- grid of customer cards -->
+                    <div class="row">
+                        <!-- <div class="container content">
+                            <div class="col col-of-cards">
+
+                            </div>
+                        </div> -->
+                        <div class="container">
+                            <div class="column">
+                                <div class="card mt-3">
+                                    <div class="container">
+                                        <div class="row">
+                                            <div class="col-1">
+                                                <img class="rounded prof-pic mt-3 ml-4" src="images/profile-pics/default-profile-pic.png" alt="Profile pic">
+                                            </div>
+                                            <div class="col-5">
+                                                <div class="card-body">
+                                                    <h5 class="card-title">Lil Pump</h5>
+                                                    <p class="card-text">32 Gucci St Amherst 01002 MA</p>
+                                                    <p class="card-text">lpump@umass.edu</p>
+                                                    <p class="card-text">123-456-7890</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card mt-3">
+                                    <div class="container">
+                                        <div class="row">
+                                            <div class="col-1">
+                                                <img class="rounded prof-pic mt-3 ml-4" src="images/profile-pics/default-profile-pic.png" alt="Profile pic">
+                                            </div>
+                                            <div class="col-5">
+                                                <div class="card-body">
+                                                    <h5 class="card-title">Justin Bieber</h5>
+                                                    <p class="card-text">65 Baby St Amherst 01003 MA</p>
+                                                    <p class="card-text">jbieber@umass.edu</p>
+                                                    <p class="card-text">123-456-7890</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card mt-3">
+                                    <div class="container">
+                                        <div class="row">
+                                            <div class="col-1">
+                                                <img class="rounded prof-pic mt-3 ml-4" src="images/profile-pics/default-profile-pic.png" alt="Profile pic">
+                                            </div>
+                                            <div class="col-5">
+                                                <div class="card-body">
+                                                    <h5 class="card-title">Kumble Subbaswamy</h5>
+                                                    <p class="card-text">101 Remote St Amherst 01002 MA</p>
+                                                    <p class="card-text">swamy@umass.edu</p>
+                                                    <p class="card-text">123-456-7890</p>    
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>  <!-- content column -->
+            </div>
+        </div>
+    </div>
+</body>
+</html>
