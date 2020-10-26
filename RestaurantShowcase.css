@@ -69,6 +69,7 @@ tertiary: #F64C72
 .product-img{
     width: 100%;
     height: 100%;
+    object-fit: cover;
 }
 
 /*
