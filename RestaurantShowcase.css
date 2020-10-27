@@ -63,8 +63,6 @@ tertiary: #F64C72
 }
 
 
-
-
 /*food product's image class*/
 .product-img{
     width: 100%;
@@ -73,10 +71,12 @@ tertiary: #F64C72
 }
 
 /*
-card title
+add to cart button
 */
-.card-title{
-
+.add-to-cart{
+    background-color: #F64C72;
+    right: 10%;
+    position: absolute;
 }
 /**/
 .review-card{
