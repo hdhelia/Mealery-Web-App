@@ -15,6 +15,8 @@ Harshal Dhelia (@hdhelia) - worked on the HTML, CSS and bootstrap for the main h
 
 ## Homepage wireframe:
 
+![alt text](milestone-1-md-pics/mainpage-wf1.jpg)
+
 ## Customer side wireframes:
 ![alt text](milestone-1-md-pics/cust-wf1.jpeg)
 ![alt text](milestone-1-md-pics/cust-wf2.jpeg)
@@ -27,6 +29,9 @@ Harshal Dhelia (@hdhelia) - worked on the HTML, CSS and bootstrap for the main h
 # HTML/CSS/Bootstrap Mockups  
 
 ## Home page:
+
+![alt text](milestone-1-md-pics/mainpage-mu1.png)
+![alt text](milestone-1-md-pics/mainpage-mu2.png)
 
 ## Customer side:
 
