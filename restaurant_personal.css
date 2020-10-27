@@ -116,6 +116,14 @@ font-weight: bolder;
     height: 50px;
 }
 
+.list-of-fields{
+    margin-left: 100px;
+}
+
+#save{
+    margin-left: 200px;
+}
+
 /* Trying slide in animations */
 /* #sidenav .sidenav-content .sidenav-header{
     -moz-animation: slidein 300ms forwards;
