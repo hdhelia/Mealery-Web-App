@@ -1,0 +1,95 @@
+.bodyBg{
+    background-color: #610345;
+}
+
+.whiteColor{
+    color: white;
+}
+
+#Headline-Page{
+    /* color: burlywood; */
+    color : #610345;
+    /* font-family: cursive; */
+    font-weight: lighter;
+    text-align: center;
+}
+
+.signInBar{
+    /* background-color: burlywood; */
+    background-color : #610345;
+    text-align: end;
+    padding: 10px;
+    border-bottom: 5px solid #F64C72 ;
+}
+
+.signUpSignInText{
+    color: #BBB5BD;
+}
+
+.Image-Banner{
+    width: auto;
+    height: 400px;
+    background-image: url("images/front-page/Background-Bread.jpg");
+    background-size: cover;
+}
+
+.Text-Banner{
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-style: italic;
+    font-weight: bolder;
+    text-align: center;
+    color: black;
+}
+
+.Headline-Section{
+    font-family: fantasy;
+    font-weight: bold;
+    color :  #610345;
+}
+
+.userReviewsSection{
+    width: auto;
+    height: fit-content;
+}
+
+/* All Padding Classes  */
+
+.heading1Padding{
+    padding: 20px;
+}
+
+.paddingLeftRight20{
+    padding-right: 20px;
+    padding-left: 20px;
+}
+
+.padding20{
+    padding: 50px;
+}
+
+/* All background colors */
+
+.back-brown{
+    background-color: #52361b;
+}
+
+/* All Margins */
+
+.marginLeftRight20{
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+.marginTop5{
+    margin-top: 5px;
+}
+
+.margin20{
+    margin: 20px;
+}
+
+/* All borders */
+
+.borderAroundMe{
+    border: 1px solid black;
+}
