@@ -1,0 +1,115 @@
+
+/* Colors
+primary: #610345
+secondary:#BBB5BD
+tertiary: #F64C72
+*/
+
+.primary-color{
+    color:#610345;
+}
+
+.secondary-color{
+    color: #BBB5BD;
+}
+
+.tertiary-color{
+    color: #F64C72;
+}
+
+/*Fonts*/
+.secondary-font{
+    font-family: 'Dancing Script', cursive;
+}
+
+/* image class */
+#top-decor{
+    z-index: -1;
+}
+
+#restaurant-img{
+    width: 100%;
+    height: 60% ;
+    position: absolute;
+    top: 0;
+    filter: contrast(50%);
+    object-fit: none;
+    border-bottom: 5px solid #F64C72;
+}
+/*name of restaurant properties*/
+#name-of-restaurant{
+    position: absolute;
+    top: 20%;
+    left: 10%;
+    color: #610345;
+}
+
+/*rating properties*/
+#rating{
+    position: absolute;
+    top: 40%;
+    left: 10%;
+    color: #F64C72;
+}
+
+/*name of restaurant properties*/
+.restaurant-content{
+    position: absolute;
+    top:65%;
+    left: 10%;
+    z-index: 1;
+    height: 1000px;
+    width: 1000px;
+}
+
+
+/*food product's image class*/
+.product-img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/*
+add to cart button
+*/
+.add-to-cart{
+    background-color: #F64C72;
+    right: 10%;
+    position: absolute;
+}
+/**/
+.review-card{
+    overflow: hidden;
+}
+
+.user-pic{
+    width: 50px;
+    /* border-radius:90%; */
+    height: 50px;
+}
+
+/*card*/
+/*w3schools referred for this*/
+.card {
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    transition: 0.3s;
+  }
+  
+  .card:hover {
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+  }
+
+/*product's card's style*/
+.product-card{
+    overflow: hidden;
+}
+
+/*style for the links*/
+  .link{
+      color:#F64C72;
+  }
+  .link:hover{
+    color: #F64C72;
+    text-decoration: none;
+  }
