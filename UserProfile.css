@@ -1,11 +1,21 @@
+
+/*style for the user photo on the top right corner*/
+.user-pic{
+    right: 0px;
+    position: absolute;
+}
+
+/*style for the fields*/
 .list-of-fields{
     margin-left: 100px;
 }
 
+/*style for the save button*/
 #save{
     margin-left: 200px;
 }
 
+/*style to center align text*/
 .center-text{
     text-align: center;
     font-size: 60px;
