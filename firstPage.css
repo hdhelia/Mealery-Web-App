@@ -24,7 +24,15 @@
 
 .signUpSignInText{
     color: #BBB5BD;
+    display: inline;
+    margin: 10px;
+    font-weight: normal;
 }
+
+.signUpSignInText:hover{
+    color: #F64C72;
+}
+
 
 .Image-Banner{
     width: auto;
