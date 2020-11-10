@@ -2,7 +2,7 @@ const express = require('express');
 const { readFileSync, existsSync } = require('fs');
 const { parse } = require('url');
 const app = express();
-const port = 8080;    
+const port = process.env.PORT || 8080;    
 const faker = require("faker");
 
 app.get('/',(req,res) =>{
