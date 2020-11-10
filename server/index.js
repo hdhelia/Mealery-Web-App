@@ -1,4 +1,5 @@
 const express = require('express'); 
+const faker = require('faker');
 const { readFileSync, existsSync } = require('fs');
 const { parse } = require('url');
 const app = express();
@@ -18,7 +19,14 @@ app.get('/customers',(req,res) =>{
 });
 
 app.get('/restaurants',(req,res) =>{
-    res.write("List of restaurants");
+    const listOfRestaurants = [];
+    for(let i=0;i<4;i++){
+        const resName = faker.company.companyName();
+        const resDesc = faker.company.catchPhrase();
+        const jsonVal = { 'name' : JSON.stringify(resName) , 'description' : JSON.stringify(resDesc)};
+        listOfRestaurants.push(jsonVal);
+    }
+    res.write(JSON.stringify(listOfRestaurants));
     res.end();
 });
 
