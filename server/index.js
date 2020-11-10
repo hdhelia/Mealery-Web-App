@@ -3,6 +3,7 @@ const { readFileSync, existsSync } = require('fs');
 const { parse } = require('url');
 const app = express();
 const port = 8080;    
+const faker = require("faker");
 
 
 
@@ -30,6 +31,279 @@ app.post('/login',(req,res) =>{
     
 });
 
+// fake rest_id = 123 for milestone 1
+app.get('/restaurant/123/orders/', (req,res) => {
+    console.log("this is a fake img url: "+faker.image.food());
+    res.send(JSON.stringify({
+        "Monday": [
+            {
+            img: faker.image.food(),
+            title: "Meal sample",
+            desc: "Here is a mock description that makes you want to buy this meal",
+            time: "Breakfast"
+            },
+            {
+                img: faker.image.food(),
+                title: "Meal sample",
+                desc: "Here is a mock description that makes you want to buy this meal",
+                time: "Breakfast"
+            },
+            {
+                img: faker.image.food(),
+                title: "Meal sample",
+                desc: "Here is a mock description that makes you want to buy this meal",
+                time: "Lunch"
+            },
+            {
+                img: faker.image.food(),
+                title: "Meal sample",
+                desc: "Here is a mock description that makes you want to buy this meal",
+                time: "Lunch"
+            },
+            {
+                img: faker.image.food(),
+                title: "Meal sample",
+                desc: "Here is a mock description that makes you want to buy this meal",
+                time: "Dinner"
+            },
+            {
+                img: faker.image.food(),
+                title: "Meal sample",
+                desc: "Here is a mock description that makes you want to buy this meal",
+                time: "Dinner"
+            }
+        ],
+        "Tuesday": [
+            {
+            img: faker.image.food(),
+            title: "Meal sample",
+            desc: "Here is a mock description that makes you want to buy this meal",
+            time: "Breakfast"
+            },
+            {
+                img: faker.image.food(),
+                title: "Meal sample",
+                desc: "Here is a mock description that makes you want to buy this meal",
+                time: "Breakfast"
+            },
+            {
+                img: faker.image.food(),
+                title: "Meal sample",
+                desc: "Here is a mock description that makes you want to buy this meal",
+                time: "Lunch"
+            },
+            {
+                img: faker.image.food(),
+                title: "Meal sample",
+                desc: "Here is a mock description that makes you want to buy this meal",
+                time: "Lunch"
+            },
+            {
+                img: faker.image.food(),
+                title: "Meal sample",
+                desc: "Here is a mock description that makes you want to buy this meal",
+                time: "Dinner"
+            },
+            {
+                img: faker.image.food(),
+                title: "Meal sample",
+                desc: "Here is a mock description that makes you want to buy this meal",
+                time: "Dinner"
+            }
+        ],
+        "Wednesday": [
+            {
+            img: faker.image.food(),
+            title: "Meal sample",
+            desc: "Here is a mock description that makes you want to buy this meal",
+            time: "Breakfast"
+            },
+            {
+                img: faker.image.food(),
+                title: "Meal sample",
+                desc: "Here is a mock description that makes you want to buy this meal",
+                time: "Breakfast"
+            },
+            {
+                img: faker.image.food(),
+                title: "Meal sample",
+                desc: "Here is a mock description that makes you want to buy this meal",
+                time: "Lunch"
+            },
+            {
+                img: faker.image.food(),
+                title: "Meal sample",
+                desc: "Here is a mock description that makes you want to buy this meal",
+                time: "Lunch"
+            },
+            {
+                img: faker.image.food(),
+                title: "Meal sample",
+                desc: "Here is a mock description that makes you want to buy this meal",
+                time: "Dinner"
+            },
+            {
+                img: faker.image.food(),
+                title: "Meal sample",
+                desc: "Here is a mock description that makes you want to buy this meal",
+                time: "Dinner"
+            }
+        ],
+        "Thursday": [
+            {
+            img: faker.image.food(),
+            title: "Meal sample",
+            desc: "Here is a mock description that makes you want to buy this meal",
+            time: "Breakfast"
+            },
+            {
+                img: faker.image.food(),
+                title: "Meal sample",
+                desc: "Here is a mock description that makes you want to buy this meal",
+                time: "Breakfast"
+            },
+            {
+                img: faker.image.food(),
+                title: "Meal sample",
+                desc: "Here is a mock description that makes you want to buy this meal",
+                time: "Lunch"
+            },
+            {
+                img: faker.image.food(),
+                title: "Meal sample",
+                desc: "Here is a mock description that makes you want to buy this meal",
+                time: "Lunch"
+            },
+            {
+                img: faker.image.food(),
+                title: "Meal sample",
+                desc: "Here is a mock description that makes you want to buy this meal",
+                time: "Dinner"
+            },
+            {
+                img: faker.image.food(),
+                title: "Meal sample",
+                desc: "Here is a mock description that makes you want to buy this meal",
+                time: "Dinner"
+            }
+        ],
+        "Friday": [
+            {
+            img: faker.image.food(),
+            title: "Meal sample",
+            desc: "Here is a mock description that makes you want to buy this meal",
+            time: "Breakfast"
+            },
+            {
+                img: faker.image.food(),
+                title: "Meal sample",
+                desc: "Here is a mock description that makes you want to buy this meal",
+                time: "Breakfast"
+            },
+            {
+                img: faker.image.food(),
+                title: "Meal sample",
+                desc: "Here is a mock description that makes you want to buy this meal",
+                time: "Lunch"
+            },
+            {
+                img: faker.image.food(),
+                title: "Meal sample",
+                desc: "Here is a mock description that makes you want to buy this meal",
+                time: "Lunch"
+            },
+            {
+                img: faker.image.food(),
+                title: "Meal sample",
+                desc: "Here is a mock description that makes you want to buy this meal",
+                time: "Dinner"
+            },
+            {
+                img: faker.image.food(),
+                title: "Meal sample",
+                desc: "Here is a mock description that makes you want to buy this meal",
+                time: "Dinner"
+            }
+        ],
+        "Saturday": [
+            {
+            img: faker.image.food(),
+            title: "Meal sample",
+            desc: "Here is a mock description that makes you want to buy this meal",
+            time: "Breakfast"
+            },
+            {
+                img: faker.image.food(),
+                title: "Meal sample",
+                desc: "Here is a mock description that makes you want to buy this meal",
+                time: "Breakfast"
+            },
+            {
+                img: faker.image.food(),
+                title: "Meal sample",
+                desc: "Here is a mock description that makes you want to buy this meal",
+                time: "Lunch"
+            },
+            {
+                img: faker.image.food(),
+                title: "Meal sample",
+                desc: "Here is a mock description that makes you want to buy this meal",
+                time: "Lunch"
+            },
+            {
+                img: faker.image.food(),
+                title: "Meal sample",
+                desc: "Here is a mock description that makes you want to buy this meal",
+                time: "Dinner"
+            },
+            {
+                img: faker.image.food(),
+                title: "Meal sample",
+                desc: "Here is a mock description that makes you want to buy this meal",
+                time: "Dinner"
+            }
+        ],
+        "Sunday": [
+            {
+            img: faker.image.food(),
+            title: "Meal sample",
+            desc: "Here is a mock description that makes you want to buy this meal",
+            time: "Breakfast"
+            },
+            {
+                img: faker.image.food(),
+                title: "Meal sample",
+                desc: "Here is a mock description that makes you want to buy this meal",
+                time: "Breakfast"
+            },
+            {
+                img: faker.image.food(),
+                title: "Meal sample",
+                desc: "Here is a mock description that makes you want to buy this meal",
+                time: "Lunch"
+            },
+            {
+                img: faker.image.food(),
+                title: "Meal sample",
+                desc: "Here is a mock description that makes you want to buy this meal",
+                time: "Lunch"
+            },
+            {
+                img: faker.image.food(),
+                title: "Meal sample",
+                desc: "Here is a mock description that makes you want to buy this meal",
+                time: "Dinner"
+            },
+            {
+                img: faker.image.food(),
+                title: "Meal sample",
+                desc: "Here is a mock description that makes you want to buy this meal",
+                time: "Dinner"
+            }
+        ]
+    }));
+});
+
 // Handles MIME types of css, javascript, html and image types(.png,.jpeg,.jpg etc).
 app.get('*',(req,res) =>{
     const urlParsed = parse(req.url);
@@ -50,6 +324,8 @@ app.get('*',(req,res) =>{
     }
 });
 
-app.listen(port);
+app.listen(port, ()=>{
+    console.log("Mealery listening at "+port);
+});
 
 
