@@ -103,6 +103,7 @@ add to cart button
 /*product's card's style*/
 .product-card{
     overflow: hidden;
+    animation: slide-up 1s;
 }
 
 /*style for the links*/
@@ -113,3 +114,31 @@ add to cart button
     color: #F64C72;
     text-decoration: none;
   }
+
+  @keyframes slide-up{
+    0%{
+        position: relative;
+        bottom: -100px;
+        border: none;
+    }
+
+    50%{
+    }
+
+    100%{
+        bottom: 0px;
+    }
+}
+
+@keyframes slide-in{
+    0%{
+        position: relative;
+        left: -50px;
+    }
+
+    
+
+    100%{
+        left: 0px;
+    }
+}

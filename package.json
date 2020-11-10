@@ -6,8 +6,7 @@
     },
     "devDependencies": {
         "eslint": "^7.11.0",
-        "http-server": "^0.12.3",
-        "faker": "^5.1.0"
+        "http-server": "^0.12.3"
     },
     "eslintConfig": {
         "env": {
