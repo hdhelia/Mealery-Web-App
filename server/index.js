@@ -1,5 +1,4 @@
 const express = require('express'); 
-const faker = require('faker');
 const { readFileSync, existsSync } = require('fs');
 const { parse } = require('url');
 const app = express();
