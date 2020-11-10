@@ -359,6 +359,26 @@ app.post("/restaurant/123/profile/update", (req, res) => {
     res.send({})
 });
 
+app.get("/customer/123/profile", (req, res) => {
+    res.send(JSON.stringify({
+        name: faker.name.findName(),
+        add: "32 CoolestProject St Amherst MA 01003",
+        ph: faker.phone.phoneNumber(),
+        email: faker.internet.email(),
+        pass: faker.internet.password(),
+        cardnum: faker.finance.creditCardNumber(),
+        cvv: faker.finance.creditCardCVV(),
+        zip: faker.address.zipCode(),
+        exp: faker.date.future(),
+        card_name: faker.name.findName()
+    }));
+});
+
+app.post("/customer/123/profile/update", (req, res) => {
+    //**************IMP NEEDS TO BE FILLED IN---code to store req's body in db -- will be completed after milestone 2's submission
+    res.send({})
+});
+
 // Handles MIME types of css, javascript, html and image types(.png,.jpeg,.jpg etc).
 app.get('*',(req,res) =>{
     const urlParsed = parse(req.url);
