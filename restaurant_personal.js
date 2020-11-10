@@ -19,14 +19,112 @@ const numToDay = {
 const d = new Date()
 const todayNumber = d.getDay();
 
+const select = document.getElementById("day-dropdown");
+
+async function renderMealCards(){
+    let selectedDay = document.getElementById("day-dropdown").value;
+    selectedDay = selectedDay === "Today" ? numToDay[todayNumber] : selectedDay;
+
+    const rest_id = localStorage.rest_id //*********IMP REMEMBER TO CHANGE THIS
+
+    // fake rest_id = 123 for testing in milestone 1
+    const ordersListEndpoint = "/restaurant/123/orders" ;
+    const response = await fetch(ordersListEndpoint);
+    if (!response.ok) {
+        console.log(response.error);
+        return;
+    }
+
+    const ordersList = await response.json();
+
+    /**
+     * This is what the ordersList json will look like:
+     * {
+     *  "Monday": { img: "path_to_image", title: "Meal Sample", desc: "sample_desc", time:"Breakfast"}
+     *  "Tuesday": {...}
+     *   .
+     *   .
+     *   .
+     *   .
+     *   .
+     * }
+     * It'll have keys for all days regardless of if the restaurant does not have any orders on any particular day
+     */
+
+     const currOrdersList = ordersList[selectedDay];
+
+     for(let meal of currOrdersList){
+        const row = document.createElement("div");
+        let classes = ["row", "content"];
+        row.classList.add(...classes);
+        
+        const card = document.createElement("div");
+        classes = ["card", "product-card", "w-75"];
+        card.classList.add(...classes);
+
+        const rowCard = document.createElement("div");
+        rowCard.classList.add("row");
+
+        const colImg = document.createElement("div");
+        colImg.classList.add("col");
+        const img = document.createElement("img");
+        classes = ["product-img", "rounded"];
+        img.classList.add(...classes);
+        img.src = meal.img;
+        colImg.appendChild(img);
+
+        const colTitleDesc = document.createElement("div");
+        colTitleDesc.classList.add("col");
+
+        const rowTitle = document.createElement("div");
+        classes = ["row", "mt-2"];
+        rowTitle.classList.add(...classes);
+        const title = document.createElement("div");
+        title.classList.add("card-title");
+        const h5 = document.createElement("h5");
+        h5.innerHTML = meal.title;
+        title.appendChild(h5);
+        rowTitle.appendChild(title);
+
+        const rowDesc = document.createElement("div");
+        classes = ["row", "md-2"];
+        rowDesc.classList.add(...classes);
+        const p = document.createElement("p");
+        p.innerHTML = meal.desc;
+        rowDesc.appendChild(p);
+
+        colTitleDesc.appendChild(rowTitle);
+        colTitleDesc.appendChild(rowDesc);
+
+        rowCard.appendChild(colImg);
+        rowCard.appendChild(colTitleDesc);
+
+        card.appendChild(rowCard);
+
+        row.appendChild(card);
+
+        if(meal.time === "Breakfast"){
+            document.getElementById("breakfast-meals-list").appendChild(row);
+        }
+        else if(meal.time === "Lunch"){
+            document.getElementById("lunch-meals-list").appendChild(row);
+        }
+        else if(meal.time === "Dinner"){
+            document.getElementById("dinner-meals-list").appendChild(row);
+        }
+    }
+}
+
 window.addEventListener("load", async function (){
 
-    const select = document.getElementById("day-dropdown");
+    let selectedDay;
     const todayOption = document.createElement("option")
     todayOption.innerHTML = "Today"
     todayOption.selected = true
     select.appendChild(todayOption)
 
+    
+    
     let nextDayOption;
     //add days after today till Saturday to the day-dropdown
     for(let i = todayNumber+1; i <= 6; i++){
@@ -42,15 +140,11 @@ window.addEventListener("load", async function (){
         select.appendChild(nextDayOption)
     }
 
+    renderMealCards();
     
-
-    //const rest_id = 123 //*********IMP REMEMBER TO CHANGE THIS
-    // const ordersListEndpoint = `/restaurant/${rest_id}/orders/${day}` 
-    //const response = await fetch(ordersListEndpoint);
-    // if (!response.ok) {
-    //     console.log(response.error);
-    //     return;
-    // }
-
-    // ordersList = await response.json();
 })
+
+select.addEventListener("change", async function(){
+    renderMealCards();
+})
+

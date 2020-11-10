@@ -32,7 +32,7 @@ app.post('/login',(req,res) =>{
 });
 
 // fake rest_id = 123 for milestone 1
-app.get('/restaurant/123/orders/', (req,res) => {
+app.get('/restaurant/123/orders', (req,res) => {
     res.send(JSON.stringify({
         "Monday": [
             {
@@ -301,6 +301,55 @@ app.get('/restaurant/123/orders/', (req,res) => {
             }
         ]
     }));
+});
+
+app.get("/restaurant/123/cust_list", (req, res) =>{
+    res.send(JSON.stringify([
+        {
+            img: faker.image.people(),
+            name: faker.name.findName(),
+            add: "32 Gucci St Amherst 01002 MA",
+            email: faker.internet.email(),
+            ph: faker.phone.phoneNumber()
+        },
+        {
+            img: faker.image.people(),
+            name: faker.name.findName(),
+            add: "32 Gucci St Amherst 01002 MA",
+            email: faker.internet.email(),
+            ph: faker.phone.phoneNumber()
+        },
+        {
+            img: faker.image.people(),
+            name: faker.name.findName(),
+            add: "32 Gucci St Amherst 01002 MA",
+            email: faker.internet.email(),
+            ph: faker.phone.phoneNumber()
+        },
+        {
+            img: faker.image.people(),
+            name: faker.name.findName(),
+            add: "32 Gucci St Amherst 01002 MA",
+            email: faker.internet.email(),
+            ph: faker.phone.phoneNumber()
+        }
+    ]))
+});
+
+app.get("/restaurant/123/profile", (req, res) => {
+    res.send(JSON.stringify({
+        name: "Pita Dockets",
+        desc: "The place with best kabas and gyros",
+        add: "85 Bestproject Rd Amherst MA 01003",
+        ph: faker.phone.phoneNumber(),
+        email: faker.internet.email(),
+        pass: faker.internet.password()
+    }));
+});
+
+app.post("/restaurant/123/profile/update", (req, res) => {
+    //**************IMP NEEDS TO BE FILLED IN---code to store req's body in db -- will be completed after milestone 2's submission
+    res.send({})
 });
 
 // Handles MIME types of css, javascript, html and image types(.png,.jpeg,.jpg etc).
