@@ -60,6 +60,10 @@
     height: fit-content;
 }
 
+.img-hover-feature:hover{
+    opacity: 0.5;
+}
+
 /* All Padding Classes  */
 
 .heading1Padding{
