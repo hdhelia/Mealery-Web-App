@@ -41,22 +41,51 @@ app.get('/info/restaurant',(req,res) =>{
                 image:"../images/profile-pics/default-profile-pic.png",
                 stars:3.5,
                 text:"Never eaten the food here, but love the website!",
-            }
+            },
+            {   
+                image:"../images/profile-pics/default-profile-pic.png",
+                stars:3.5,
+                text:"Never eaten the food here, but love the website!",
+            },{   
+                image:"../images/profile-pics/default-profile-pic.png",
+                stars:3.5,
+                text:"Never eaten the food here, but love the website!",
+            },{   
+                image:"../images/profile-pics/default-profile-pic.png",
+                stars:3.5,
+                text:"Never eaten the food here, but love the website!",
+            },{   
+                image:"../images/profile-pics/default-profile-pic.png",
+                stars:3.5,
+                text:"Never eaten the food here, but love the website!",
+            },{   
+                image:"../images/profile-pics/default-profile-pic.png",
+                stars:3.5,
+                text:"Never eaten the food here, but love the website!",
+            },{   
+                image:"../images/profile-pics/default-profile-pic.png",
+                stars:3.5,
+                text:"Never eaten the food here, but love the website!",
+            },{   
+                image:"../images/profile-pics/default-profile-pic.png",
+                stars:3.5,
+                text:"Never eaten the food here, but love the website!",
+            },
         ],
         breakfast:[
             {
                 name:"Meal sample",
-                image:"../images/restaurant-pics/sample-img.jpg",
+                image:"./images/restaurant-pics/sample-img.jpg",
                 description:"Here is a mock description that makes you want to buy this meal"
             },
             {
                 name:"Meal sample",
-                image:"../images/restaurant-pics/sample-img.jpg",
+                image:"./images/restaurant-pics/sample-img.jpg",
                 description:"Here is a mock description that makes you want to buy this meal"
             },
             {
                 name:"Meal sample",
-                image:"../images/restaurant-pics/sample-img.jpg",
+                image:"./images/restaurant-pics/sample-img.jpg",
                 description:"Here is a mock description that makes you want to buy this meal"
             },
         ],
