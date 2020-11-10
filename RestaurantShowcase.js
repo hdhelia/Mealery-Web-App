@@ -1,3 +1,4 @@
+
 function loading(){
     //function to get the restaurant info
     async function getInfo(restaurant_name){
@@ -53,6 +54,7 @@ function loading(){
         const link = document.createElement('a');
         link.classList.add('link');
         link.href = "#reviews";
+
         
         setStars(link,restaurant_info.stars, 2);
         link.appendChild(document.createElement('br'));
@@ -68,11 +70,83 @@ function loading(){
 
 
         //set image
-        document.getElementById('restaurant-img').src = restaurant_info.image;
+
+        const topDecor = document.getElementById('top-decor');
+
+        const restaurantImage = document.createElement('img');
+        restaurantImage.src = restaurant_info.image;
+        restaurantImage.alt = "This is the Restaurant's image";
+        restaurantImage.id = "restaurant-img";
+        topDecor.appendChild(restaurantImage);
 
         //set reviews
         const reviews = document.getElementById('reviews');
+        //number of reviews to be shown initially
+        const NUM_REVIEWS = 5;
+
+        let offset = 0;
+
+        //count of the reviews
+        let count = 0;
+
+        //function that displays 5 more reviews
+        function ShowMoreReviews(offset){
+            const list = restaurant_info.reviews;
+            
+            for(let i = offset; i<=offset+5;i++){
+                //exceeding the number of reviews
+                if(i >= list.length){
+                    break;
+                }
+
+                element = list[i];
+
+                let classes = ["card", "m-4", "w-50", "review-card"];
+                const card = document.createElement('div');
+                card.classList.add(...classes);
+
+                const row = document.createElement('div');
+                classes = ["row", "mt-1", "mb-3"];
+                row.classList.add(...classes);
+                card.appendChild(row);
+
+                const image = document.createElement('div');
+                classes = ["col-3",  "mt-1", "ml-4", "md-1", "rounded"];
+                image.classList.add(...classes);
+                row.appendChild(image);
+
+                const img = document.createElement('img');
+                img.src = element.image;
+                img.alt = "profile picture"
+                img.classList.add('user-pic');
+                image.appendChild(img);
+
+                const reviewMaterial = document.createElement('div');
+                classes = ["col-5", "mt-1"];
+                reviewMaterial.classList.add(...classes);
+                row.appendChild(reviewMaterial);
+                
+                const stars = document.createElement('div');
+                classes = ["row", "tertiary-color"];
+                setStars(stars, element.stars, 1);
+                stars.classList.add(...classes);
+                reviewMaterial.appendChild(stars);
+
+                const text = document.createElement('div');
+                text.classList.add('row');
+                text.appendChild(document.createTextNode(element.text));
+                reviewMaterial.appendChild(text);
+
+                reviews.appendChild(card);
+
+            }
+        }   
+        
         restaurant_info.reviews.forEach(element => {
+            if(count >= 5){
+                return;
+            }
+            count++;
             let classes = ["card", "m-4", "w-50", "review-card"];
             const card = document.createElement('div');
             card.classList.add(...classes);
@@ -110,7 +184,122 @@ function loading(){
             reviewMaterial.appendChild(text);
 
             reviews.appendChild(card);
+
         });
+
+        offset+=5;
+        
+        if(restaurant_info.reviews.length > 5){
+            //more reviews link
+            moreReviews = document.createElement('a');
+
+            function showMore(){
+                ShowMoreReviews(offset);
+                offset+=5;
+                if(offset >= restaurant_info.reviews.length){
+                    document.getElementById('more').remove();
+                }
+
+            }
+
+            moreReviews.href = "#more";
+            
+
+            moreReviews.classList.add("link");
+            moreReviews.id = "more";
+            moreReviews.appendChild(document.createTextNode("More Reviews"));
+            moreReviews.addEventListener('click',showMore);
+            moreReviews.appendChild(document.createElement('br'));
+            moreReviews.appendChild(document.createElement('br'));
+            reviews.appendChild(moreReviews);
+        }
+
+        //menu rendering
+
+        //function to get meal card
+        function getMeal(meal){
+            let classes = ["row", "content"];
+            
+            const card = document.createElement("div");
+            classes = ["card", "product-card", "w-75"];
+            card.classList.add(...classes);
+    
+            const rowCard = document.createElement("div");
+            rowCard.classList.add("row");
+    
+            const colImg = document.createElement("div");
+            colImg.classList.add("col");
+            const img = document.createElement("img");
+            classes = ["product-img", "rounded"];
+            img.classList.add(...classes);
+            img.src = meal.image;
+            colImg.appendChild(img);
+    
+            const colTitleDesc = document.createElement("div");
+            colTitleDesc.classList.add("col");
+    
+            const rowTitle = document.createElement("div");
+            classes = ["row", "mt-2"];
+            rowTitle.classList.add(...classes);
+            const title = document.createElement("div");
+            title.classList.add("card-title");
+            const h5 = document.createElement("h5");
+            h5.innerHTML = meal.name;
+            title.appendChild(h5);
+            rowTitle.appendChild(title);
+    
+            const rowDesc = document.createElement("div");
+            classes = ["row", "md-2"];
+            rowDesc.classList.add(...classes);
+            const p = document.createElement("p");
+            p.innerHTML = meal.description;
+            rowDesc.appendChild(p);
+    
+            colTitleDesc.appendChild(rowTitle);
+            colTitleDesc.appendChild(rowDesc);
+    
+            rowCard.appendChild(colImg);
+            rowCard.appendChild(colTitleDesc);
+    
+            card.appendChild(rowCard);
+
+            //add to cart button
+            const addToCart = document.createElement('div');
+            addToCart.classList.add('col');
+
+            const button = document.createElement('button');
+            classes = ["btn","btn-danger", "mt-5", "add-to-cart"];
+            button.classList.add(...classes);
+            button.innerHTML = "Add To Cart"
+            addToCart.appendChild(button);
+
+            rowCard.appendChild(addToCart);
+    
+            return card;
+        }
+
+        
+        //breakfast menu
+        breakfastDiv = document.getElementById('breakfast');
+        for(let meal of restaurant_info.breakfast){
+            breakfastDiv.appendChild(getMeal(meal));
+            breakfastDiv.appendChild(document.createElement('br'));
+        }
+
+        //lunch menu
+        lunchDiv = document.getElementById('lunch');
+        for(let meal of restaurant_info.lunch){
+            lunchDiv.appendChild(getMeal(meal));
+            lunchDiv.appendChild(document.createElement('br'));
+        }
+
+        //dinner menu
+        dinnerDiv = document.getElementById('dinner');
+        for(let meal of restaurant_info.dinner){
+            dinnerDiv.appendChild(getMeal(meal));
+            dinnerDiv.appendChild(document.createElement('br'));
+        }
+        
     }   
 
 
