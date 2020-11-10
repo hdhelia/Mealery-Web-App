@@ -33,7 +33,6 @@ app.post('/login',(req,res) =>{
 
 // fake rest_id = 123 for milestone 1
 app.get('/restaurant/123/orders/', (req,res) => {
-    console.log("this is a fake img url: "+faker.image.food());
     res.send(JSON.stringify({
         "Monday": [
             {
