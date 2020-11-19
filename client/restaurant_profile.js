@@ -1,7 +1,7 @@
 // This is the js to render the data in restaurant_profile.html
 
 window.addEventListener("load", async function(){
-    const rest_id = localStorage.rest_id //*********IMP REMEMBER TO CHANGE THIS
+    const rest_id = localStorage.rest_id; //*********IMP REMEMBER TO CHANGE THIS
 
     // fake rest_id = 123 for testing in milestone 1
     const profileEndpoint = "/restaurant/123/profile" ;

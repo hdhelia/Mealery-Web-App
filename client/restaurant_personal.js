@@ -14,9 +14,9 @@ const numToDay = {
     5:"Friday",
     6:"Saturday"
 
-}
+};
 
-const d = new Date()
+const d = new Date();
 const todayNumber = d.getDay();
 
 const select = document.getElementById("day-dropdown");
@@ -25,7 +25,7 @@ async function renderMealCards(){
     let selectedDay = document.getElementById("day-dropdown").value;
     selectedDay = selectedDay === "Today" ? numToDay[todayNumber] : selectedDay;
 
-    const rest_id = localStorage.rest_id //*********IMP REMEMBER TO CHANGE THIS
+    const rest_id = localStorage.rest_id; //*********IMP REMEMBER TO CHANGE THIS
 
     // fake rest_id = 123 for testing in milestone 1
     const ordersListEndpoint = "/restaurant/123/orders" ;
@@ -53,7 +53,7 @@ async function renderMealCards(){
 
      const currOrdersList = ordersList[selectedDay];
 
-     for(let meal of currOrdersList){
+     for(const meal of currOrdersList){
         const row = document.createElement("div");
         let classes = ["row", "content"];
         row.classList.add(...classes);
@@ -118,33 +118,33 @@ async function renderMealCards(){
 window.addEventListener("load", async function (){
 
     let selectedDay;
-    const todayOption = document.createElement("option")
-    todayOption.innerHTML = "Today"
-    todayOption.selected = true
-    select.appendChild(todayOption)
+    const todayOption = document.createElement("option");
+    todayOption.innerHTML = "Today";
+    todayOption.selected = true;
+    select.appendChild(todayOption);
 
     
     
     let nextDayOption;
     //add days after today till Saturday to the day-dropdown
     for(let i = todayNumber+1; i <= 6; i++){
-        nextDayOption = document.createElement("option")
+        nextDayOption = document.createElement("option");
         nextDayOption.innerHTML = numToDay[i];
-        select.appendChild(nextDayOption)
+        select.appendChild(nextDayOption);
     }
 
     //add days after Saturday till before today
     for(let i = 0; i < todayNumber; i++){
-        nextDayOption = document.createElement("option")
+        nextDayOption = document.createElement("option");
         nextDayOption.innerHTML = numToDay[i];
-        select.appendChild(nextDayOption)
+        select.appendChild(nextDayOption);
     }
 
     renderMealCards();
     
-})
+});
 
 select.addEventListener("change", async function(){
     renderMealCards();
-})
+});
 

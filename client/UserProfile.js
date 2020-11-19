@@ -1,7 +1,7 @@
 // This is the js to render the data in UserProfile.html
 
 window.addEventListener("load", async function(){
-    const cust_id = localStorage.cust_id //*********IMP REMEMBER TO CHANGE THIS
+    const cust_id = localStorage.cust_id; //*********IMP REMEMBER TO CHANGE THIS
 
     // fake rest_id = 123 for testing in milestone 1
     const profileEndpoint = "/customer/123/profile" ;
