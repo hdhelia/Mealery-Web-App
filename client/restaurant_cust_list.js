@@ -1,7 +1,7 @@
 // This is the js to render the cards in restaurant_cust_list.html
 
 window.addEventListener("load", async function(){
-    const rest_id = localStorage.rest_id //*********IMP REMEMBER TO CHANGE THIS
+    const rest_id = localStorage.rest_id; //*********IMP REMEMBER TO CHANGE THIS
 
     // fake rest_id = 123 for testing in milestone 1
     const custListEndpoint = "/restaurant/123/cust_list" ;
@@ -14,7 +14,7 @@ window.addEventListener("load", async function(){
     const custList = await response.json();
     const custCardsList = document.getElementById("cust-cards-list");
 
-    for(let customer of custList){
+    for(const customer of custList){
         const card = document.createElement("div");
         let classes = ["card", "mt-3"];
         card.classList.add(...classes);
@@ -68,4 +68,4 @@ window.addEventListener("load", async function(){
 
         custCardsList.appendChild(card);
     }
-})
+});

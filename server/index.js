@@ -473,7 +473,7 @@ app.get("/restaurant/123/cust_list", (req, res) =>{
             email: faker.internet.email(),
             ph: faker.phone.phoneNumber()
         }
-    ]))
+    ]));
 });
 
 app.get("/restaurant/123/profile", (req, res) => {
@@ -489,7 +489,7 @@ app.get("/restaurant/123/profile", (req, res) => {
 
 app.post("/restaurant/123/profile/update", (req, res) => {
     //**************IMP NEEDS TO BE FILLED IN---code to store req's body in db -- will be completed after milestone 2's submission
-    res.send({})
+    res.send({});
 });
 
 app.get("/customer/123/profile", (req, res) => {
@@ -509,7 +509,7 @@ app.get("/customer/123/profile", (req, res) => {
 
 app.post("/customer/123/profile/update", (req, res) => {
     //**************IMP NEEDS TO BE FILLED IN---code to store req's body in db -- will be completed after milestone 2's submission
-    res.send({})
+    res.send({});
 });
 
 // Handles MIME types of css, javascript, html and image types(.png,.jpeg,.jpg etc).
