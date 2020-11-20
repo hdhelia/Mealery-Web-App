@@ -52,8 +52,9 @@ function loading(){
         //set star ratings and reviews link
         const rating = document.getElementById('rating');
         const link = document.createElement('a');
+        link.href = "#reviews";
         link.classList.add('link');
-        link.href = '#reviews';
+        
         
         setStars(link,restaurant_info.stars, 2);
         link.appendChild(document.createElement('br'));
