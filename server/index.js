@@ -5,12 +5,6 @@ const app = express();
 const port = process.env.PORT || 8080;    
 const faker = require("faker");
 
-// app.get('/',(req,res) =>{
-//     res.writeHead(200, "Content-type : text/html");
-//     res.write(readFileSync("firstPage.html"));
-//     res.end();
-// });
-
 app.use('/', express.static('client/'));
 
 app.get('/customers',(req,res) =>{
