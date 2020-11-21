@@ -37,7 +37,7 @@ function loading(){
     }
 
    //To be used later with database: const restaurant_name =  window.location.pathname.substring(window.location.pathname.lastIndexOf('/'));
-    const restaurant_name = "restaurant";
+    const restaurant_name = "4";
     const restaurant_info = (async()=>getInfo(restaurant_name))();
 
     //function to render the page
@@ -116,7 +116,7 @@ function loading(){
 
                 const img = document.createElement('img');
                 img.src = element.image;
-                img.alt = "profile picture"
+                img.alt = "profile picture";
                 img.classList.add('user-pic');
                 image.appendChild(img);
 
@@ -162,7 +162,7 @@ function loading(){
 
             const img = document.createElement('img');
             img.src = element.image;
-            img.alt = "profile picture"
+            img.alt = "profile picture";
             img.classList.add('user-pic');
             image.appendChild(img);
 
@@ -269,7 +269,7 @@ function loading(){
             const button = document.createElement('button');
             classes = ["btn","btn-danger", "mt-5", "add-to-cart"];
             button.classList.add(...classes);
-            button.innerHTML = "Add To Cart"
+            button.innerHTML = "Add To Cart";
             addToCart.appendChild(button);
 
             rowCard.appendChild(addToCart);
@@ -280,21 +280,21 @@ function loading(){
         
         //breakfast menu
         breakfastDiv = document.getElementById('breakfast');
-        for(let meal of restaurant_info.breakfast){
+        for(const meal of restaurant_info.breakfast){
             breakfastDiv.appendChild(getMeal(meal));
             breakfastDiv.appendChild(document.createElement('br'));
         }
 
         //lunch menu
         lunchDiv = document.getElementById('lunch');
-        for(let meal of restaurant_info.lunch){
+        for(const meal of restaurant_info.lunch){
             lunchDiv.appendChild(getMeal(meal));
             lunchDiv.appendChild(document.createElement('br'));
         }
 
         //dinner menu
         dinnerDiv = document.getElementById('dinner');
-        for(let meal of restaurant_info.dinner){
+        for(const meal of restaurant_info.dinner){
             dinnerDiv.appendChild(getMeal(meal));
             dinnerDiv.appendChild(document.createElement('br'));
         }

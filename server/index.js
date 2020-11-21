@@ -4,12 +4,9 @@ const { parse } = require('url');
 const app = express();
 const port = process.env.PORT || 8080;    
 const faker = require("faker");
+const database = require('./db.js');
 
-app.get('/',(req,res) =>{
-    res.writeHead(200, "Content-type : text/html");
-    res.write(readFileSync("firstPage.html"));
-    res.end();
-});
+app.use('/', express.static('client/'));
 
 app.get('/customers',(req,res) =>{
     res.write("List of customers");
@@ -29,7 +26,7 @@ app.get('/restaurants',(req,res) =>{
 });
 
 
-app.get('/info/restaurant',(req,res) =>{
+app.get('/info/*',(req,res) =>{
     const fake = {
         name:"Pita Dockets",
         image:"../images/restaurant-pics/pitapockets.jpg",
@@ -104,13 +101,17 @@ app.get('/info/restaurant',(req,res) =>{
         ]
 
     };
+    const url = req.url;
+    const restaurant = url.substring(url.lastIndexOf('/')+1);
+
 
     res.write(JSON.stringify(fake));
     res.end();
 });
 
 
-app.get('/info/restaurant',(req,res) =>{
+app.get('/info/',(req,res) =>{
+    console.log("anything");
     const fake = {
         name:"Pita Dockets",
         image:"../images/restaurant-pics/pitapockets.jpg",
@@ -186,7 +187,7 @@ app.get('/info/restaurant',(req,res) =>{
 
     };
 
-    res.write(JSON.stringify(fake));
+    //res.write(JSON.stringify(fake));
     res.end();
 });
 
@@ -198,325 +199,47 @@ app.post('/login',(req,res) =>{
     
 });
 
-// fake rest_id = 123 for milestone 1
-app.get('/restaurant/123/orders', (req,res) => {
-    res.send(JSON.stringify({
-        "Monday": [
-            {
-            img: faker.image.food(),
-            title: "Meal sample",
-            desc: "Here is a mock description that makes you want to buy this meal",
-            time: "Breakfast"
-            },
-            {
-                img: faker.image.food(),
-                title: "Meal sample",
-                desc: "Here is a mock description that makes you want to buy this meal",
-                time: "Breakfast"
-            },
-            {
-                img: faker.image.food(),
-                title: "Meal sample",
-                desc: "Here is a mock description that makes you want to buy this meal",
-                time: "Lunch"
-            },
-            {
-                img: faker.image.food(),
-                title: "Meal sample",
-                desc: "Here is a mock description that makes you want to buy this meal",
-                time: "Lunch"
-            },
-            {
-                img: faker.image.food(),
-                title: "Meal sample",
-                desc: "Here is a mock description that makes you want to buy this meal",
-                time: "Dinner"
-            },
-            {
-                img: faker.image.food(),
-                title: "Meal sample",
-                desc: "Here is a mock description that makes you want to buy this meal",
-                time: "Dinner"
-            }
-        ],
-        "Tuesday": [
-            {
-            img: faker.image.food(),
-            title: "Meal sample",
-            desc: "Here is a mock description that makes you want to buy this meal",
-            time: "Breakfast"
-            },
-            {
-                img: faker.image.food(),
-                title: "Meal sample",
-                desc: "Here is a mock description that makes you want to buy this meal",
-                time: "Breakfast"
-            },
-            {
-                img: faker.image.food(),
-                title: "Meal sample",
-                desc: "Here is a mock description that makes you want to buy this meal",
-                time: "Lunch"
-            },
-            {
-                img: faker.image.food(),
-                title: "Meal sample",
-                desc: "Here is a mock description that makes you want to buy this meal",
-                time: "Lunch"
-            },
-            {
-                img: faker.image.food(),
-                title: "Meal sample",
-                desc: "Here is a mock description that makes you want to buy this meal",
-                time: "Dinner"
-            },
-            {
-                img: faker.image.food(),
-                title: "Meal sample",
-                desc: "Here is a mock description that makes you want to buy this meal",
-                time: "Dinner"
-            }
-        ],
-        "Wednesday": [
-            {
-            img: faker.image.food(),
-            title: "Meal sample",
-            desc: "Here is a mock description that makes you want to buy this meal",
-            time: "Breakfast"
-            },
-            {
-                img: faker.image.food(),
-                title: "Meal sample",
-                desc: "Here is a mock description that makes you want to buy this meal",
-                time: "Breakfast"
-            },
-            {
-                img: faker.image.food(),
-                title: "Meal sample",
-                desc: "Here is a mock description that makes you want to buy this meal",
-                time: "Lunch"
-            },
-            {
-                img: faker.image.food(),
-                title: "Meal sample",
-                desc: "Here is a mock description that makes you want to buy this meal",
-                time: "Lunch"
-            },
-            {
-                img: faker.image.food(),
-                title: "Meal sample",
-                desc: "Here is a mock description that makes you want to buy this meal",
-                time: "Dinner"
-            },
-            {
-                img: faker.image.food(),
-                title: "Meal sample",
-                desc: "Here is a mock description that makes you want to buy this meal",
-                time: "Dinner"
-            }
-        ],
-        "Thursday": [
-            {
-            img: faker.image.food(),
-            title: "Meal sample",
-            desc: "Here is a mock description that makes you want to buy this meal",
-            time: "Breakfast"
-            },
-            {
-                img: faker.image.food(),
-                title: "Meal sample",
-                desc: "Here is a mock description that makes you want to buy this meal",
-                time: "Breakfast"
-            },
-            {
-                img: faker.image.food(),
-                title: "Meal sample",
-                desc: "Here is a mock description that makes you want to buy this meal",
-                time: "Lunch"
-            },
-            {
-                img: faker.image.food(),
-                title: "Meal sample",
-                desc: "Here is a mock description that makes you want to buy this meal",
-                time: "Lunch"
-            },
-            {
-                img: faker.image.food(),
-                title: "Meal sample",
-                desc: "Here is a mock description that makes you want to buy this meal",
-                time: "Dinner"
-            },
-            {
-                img: faker.image.food(),
-                title: "Meal sample",
-                desc: "Here is a mock description that makes you want to buy this meal",
-                time: "Dinner"
-            }
-        ],
-        "Friday": [
-            {
-            img: faker.image.food(),
-            title: "Meal sample",
-            desc: "Here is a mock description that makes you want to buy this meal",
-            time: "Breakfast"
-            },
-            {
-                img: faker.image.food(),
-                title: "Meal sample",
-                desc: "Here is a mock description that makes you want to buy this meal",
-                time: "Breakfast"
-            },
-            {
-                img: faker.image.food(),
-                title: "Meal sample",
-                desc: "Here is a mock description that makes you want to buy this meal",
-                time: "Lunch"
-            },
-            {
-                img: faker.image.food(),
-                title: "Meal sample",
-                desc: "Here is a mock description that makes you want to buy this meal",
-                time: "Lunch"
-            },
-            {
-                img: faker.image.food(),
-                title: "Meal sample",
-                desc: "Here is a mock description that makes you want to buy this meal",
-                time: "Dinner"
-            },
-            {
-                img: faker.image.food(),
-                title: "Meal sample",
-                desc: "Here is a mock description that makes you want to buy this meal",
-                time: "Dinner"
-            }
-        ],
-        "Saturday": [
-            {
-            img: faker.image.food(),
-            title: "Meal sample",
-            desc: "Here is a mock description that makes you want to buy this meal",
-            time: "Breakfast"
-            },
-            {
-                img: faker.image.food(),
-                title: "Meal sample",
-                desc: "Here is a mock description that makes you want to buy this meal",
-                time: "Breakfast"
-            },
-            {
-                img: faker.image.food(),
-                title: "Meal sample",
-                desc: "Here is a mock description that makes you want to buy this meal",
-                time: "Lunch"
-            },
-            {
-                img: faker.image.food(),
-                title: "Meal sample",
-                desc: "Here is a mock description that makes you want to buy this meal",
-                time: "Lunch"
-            },
-            {
-                img: faker.image.food(),
-                title: "Meal sample",
-                desc: "Here is a mock description that makes you want to buy this meal",
-                time: "Dinner"
-            },
-            {
-                img: faker.image.food(),
-                title: "Meal sample",
-                desc: "Here is a mock description that makes you want to buy this meal",
-                time: "Dinner"
-            }
-        ],
-        "Sunday": [
-            {
-            img: faker.image.food(),
-            title: "Meal sample",
-            desc: "Here is a mock description that makes you want to buy this meal",
-            time: "Breakfast"
-            },
-            {
-                img: faker.image.food(),
-                title: "Meal sample",
-                desc: "Here is a mock description that makes you want to buy this meal",
-                time: "Breakfast"
-            },
-            {
-                img: faker.image.food(),
-                title: "Meal sample",
-                desc: "Here is a mock description that makes you want to buy this meal",
-                time: "Lunch"
-            },
-            {
-                img: faker.image.food(),
-                title: "Meal sample",
-                desc: "Here is a mock description that makes you want to buy this meal",
-                time: "Lunch"
-            },
-            {
-                img: faker.image.food(),
-                title: "Meal sample",
-                desc: "Here is a mock description that makes you want to buy this meal",
-                time: "Dinner"
-            },
-            {
-                img: faker.image.food(),
-                title: "Meal sample",
-                desc: "Here is a mock description that makes you want to buy this meal",
-                time: "Dinner"
-            }
-        ]
-    }));
+app.get('/restaurant/:rest_id/orders', async (req,res) => {
+    let orders;
+    try{
+        orders = await database.getOrders(req.params['rest_id']);
+    }
+    catch(error){
+        console.log(error);
+    } 
+    res.send(orders);
 });
 
-app.get("/restaurant/123/cust_list", (req, res) =>{
-    res.send(JSON.stringify([
-        {
-            img: faker.image.people(),
-            name: faker.name.findName(),
-            add: "32 Gucci St Amherst 01002 MA",
-            email: faker.internet.email(),
-            ph: faker.phone.phoneNumber()
-        },
-        {
-            img: faker.image.people(),
-            name: faker.name.findName(),
-            add: "32 Gucci St Amherst 01002 MA",
-            email: faker.internet.email(),
-            ph: faker.phone.phoneNumber()
-        },
-        {
-            img: faker.image.people(),
-            name: faker.name.findName(),
-            add: "32 Gucci St Amherst 01002 MA",
-            email: faker.internet.email(),
-            ph: faker.phone.phoneNumber()
-        },
-        {
-            img: faker.image.people(),
-            name: faker.name.findName(),
-            add: "32 Gucci St Amherst 01002 MA",
-            email: faker.internet.email(),
-            ph: faker.phone.phoneNumber()
-        }
-    ]))
+app.get("/restaurant/:rest_id/cust_list", async (req, res) =>{
+    let cust_list;
+    try{    
+        cust_list = await database.getCustomerList(req.params['rest_id']);
+    }
+    catch(error){
+        console.log(error);
+    } 
+    res.send(cust_list);
 });
 
-app.get("/restaurant/123/profile", (req, res) => {
-    res.send(JSON.stringify({
-        name: "Pita Dockets",
-        desc: "The place with best kabas and gyros",
-        add: "85 Bestproject Rd Amherst MA 01003",
-        ph: faker.phone.phoneNumber(),
-        email: faker.internet.email(),
-        pass: faker.internet.password()
-    }));
+app.get("/restaurant/:rest_id/profile", async (req, res) => {
+    let profile;
+    try{
+        profile = await database.getRestProfile(req.params['rest_id']);
+    }
+    catch(error){
+        console.log(error);
+    } 
+    res.send(profile);
 });
 
-app.post("/restaurant/123/profile/update", (req, res) => {
+app.post("/restaurant/:rest_id/profile-general/update", (req, res) => {
     //**************IMP NEEDS TO BE FILLED IN---code to store req's body in db -- will be completed after milestone 2's submission
-    res.send({})
+    res.send({});
+});
+
+app.post("/restaurant/:rest_id/profile-account/update", (req, res) => {
+    //**************IMP NEEDS TO BE FILLED IN---code to store req's body in db -- will be completed after milestone 2's submission
+    res.send({});
 });
 
 app.get("/customer/123/profile", (req, res) => {
@@ -534,10 +257,11 @@ app.get("/customer/123/profile", (req, res) => {
     }));
 });
 
-app.post("/customer/123/profile/update", (req, res) => {
+app.post("/restaurant/:rest_id/profile/update", (req, res) => {
     //**************IMP NEEDS TO BE FILLED IN---code to store req's body in db -- will be completed after milestone 2's submission
-    res.send({})
+    res.send({});
 });
+
 
 // Handles MIME types of css, javascript, html and image types(.png,.jpeg,.jpg etc).
 app.get('*',(req,res) =>{

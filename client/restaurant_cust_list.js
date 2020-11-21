@@ -1,10 +1,10 @@
 // This is the js to render the cards in restaurant_cust_list.html
 
 window.addEventListener("load", async function(){
-    const rest_id = localStorage.rest_id //*********IMP REMEMBER TO CHANGE THIS
+    const rest_id = localStorage.rest_id; //*********IMP REMEMBER TO CHANGE THIS
 
-    // fake rest_id = 123 for testing in milestone 1
-    const custListEndpoint = "/restaurant/123/cust_list" ;
+    // test rest_id = 2
+    const custListEndpoint = "/restaurant/2/cust_list" ;
     const response = await fetch(custListEndpoint);
     if (!response.ok) {
         console.log(response.error);
@@ -14,7 +14,7 @@ window.addEventListener("load", async function(){
     const custList = await response.json();
     const custCardsList = document.getElementById("cust-cards-list");
 
-    for(let customer of custList){
+    for(const customer of custList){
         const card = document.createElement("div");
         let classes = ["card", "mt-3"];
         card.classList.add(...classes);
@@ -30,7 +30,7 @@ window.addEventListener("load", async function(){
         const img = document.createElement("img");
         classes = ["rounded", "prof-pic", "mt-3", "ml-4"];
         img.classList.add(...classes);
-        img.src = customer.img;
+        img.src = customer.image;
         colImg.appendChild(img);
 
         const colBody = document.createElement("div");
@@ -44,13 +44,13 @@ window.addEventListener("load", async function(){
         name.innerHTML = customer.name;
         const addr = document.createElement("p");
         addr.classList.add("card-text");
-        addr.innerHTML = customer.add;
+        addr.innerHTML = customer.addr;
         const email = document.createElement("p");
         email.classList.add("card-text");
         email.innerHTML = customer.email;
         const ph = document.createElement("p");
         ph.classList.add("card-text");
-        ph.innerHTML = customer.ph;
+        ph.innerHTML = customer.phone_number;
 
         cardBody.appendChild(name);
         cardBody.appendChild(addr);
@@ -68,4 +68,4 @@ window.addEventListener("load", async function(){
 
         custCardsList.appendChild(card);
     }
-})
+});
