@@ -27,8 +27,8 @@ async function renderMealCards(){
 
     const rest_id = localStorage.rest_id; //*********IMP REMEMBER TO CHANGE THIS
 
-    // fake rest_id = 123 for testing in milestone 1
-    const ordersListEndpoint = "/restaurant/123/orders" ;
+    // test rest_id = 2
+    const ordersListEndpoint = "/restaurant/2/orders" ;
     const response = await fetch(ordersListEndpoint);
     if (!response.ok) {
         console.log(response.error);
@@ -52,67 +52,73 @@ async function renderMealCards(){
      */
 
      const currOrdersList = ordersList[selectedDay];
+     if(currOrdersList){
+        for(const meal of currOrdersList){
+            const row = document.createElement("div");
+            let classes = ["row", "content"];
+            row.classList.add(...classes);
+            
+            const card = document.createElement("div");
+            classes = ["card", "product-card", "w-75"];
+            card.classList.add(...classes);
 
-     for(const meal of currOrdersList){
-        const row = document.createElement("div");
-        let classes = ["row", "content"];
-        row.classList.add(...classes);
-        
-        const card = document.createElement("div");
-        classes = ["card", "product-card", "w-75"];
-        card.classList.add(...classes);
+            const rowCard = document.createElement("div");
+            rowCard.classList.add("row");
 
-        const rowCard = document.createElement("div");
-        rowCard.classList.add("row");
+            const colImg = document.createElement("div");
+            colImg.classList.add("col");
+            const img = document.createElement("img");
+            classes = ["product-img", "rounded"];
+            img.classList.add(...classes);
+            img.src = meal.img;
+            colImg.appendChild(img);
 
-        const colImg = document.createElement("div");
-        colImg.classList.add("col");
-        const img = document.createElement("img");
-        classes = ["product-img", "rounded"];
-        img.classList.add(...classes);
-        img.src = meal.img;
-        colImg.appendChild(img);
+            const colTitleDesc = document.createElement("div");
+            colTitleDesc.classList.add("col");
 
-        const colTitleDesc = document.createElement("div");
-        colTitleDesc.classList.add("col");
+            const rowTitle = document.createElement("div");
+            classes = ["row", "mt-2"];
+            rowTitle.classList.add(...classes);
+            const title = document.createElement("div");
+            title.classList.add("card-title");
+            const h5 = document.createElement("h5");
+            h5.innerHTML = meal.name;
+            title.appendChild(h5);
+            rowTitle.appendChild(title);
 
-        const rowTitle = document.createElement("div");
-        classes = ["row", "mt-2"];
-        rowTitle.classList.add(...classes);
-        const title = document.createElement("div");
-        title.classList.add("card-title");
-        const h5 = document.createElement("h5");
-        h5.innerHTML = meal.title;
-        title.appendChild(h5);
-        rowTitle.appendChild(title);
+            const rowDesc = document.createElement("div");
+            classes = ["row", "md-2"];
+            rowDesc.classList.add(...classes);
+            const p = document.createElement("p");
+            p.innerHTML = meal.desc;
+            rowDesc.appendChild(p);
 
-        const rowDesc = document.createElement("div");
-        classes = ["row", "md-2"];
-        rowDesc.classList.add(...classes);
-        const p = document.createElement("p");
-        p.innerHTML = meal.desc;
-        rowDesc.appendChild(p);
+            colTitleDesc.appendChild(rowTitle);
+            colTitleDesc.appendChild(rowDesc);
 
-        colTitleDesc.appendChild(rowTitle);
-        colTitleDesc.appendChild(rowDesc);
+            rowCard.appendChild(colImg);
+            rowCard.appendChild(colTitleDesc);
 
-        rowCard.appendChild(colImg);
-        rowCard.appendChild(colTitleDesc);
+            card.appendChild(rowCard);
 
-        card.appendChild(rowCard);
+            row.appendChild(card);
 
-        row.appendChild(card);
-
-        if(meal.time === "Breakfast"){
-            document.getElementById("breakfast-meals-list").appendChild(row);
+            if(meal.time === "Breakfast"){
+                document.getElementById("breakfast-meals-list").appendChild(row);
+            }
+            else if(meal.time === "Lunch"){
+                document.getElementById("lunch-meals-list").appendChild(row);
+            }
+            else if(meal.time === "Dinner"){
+                document.getElementById("dinner-meals-list").appendChild(row);
+            }
         }
-        else if(meal.time === "Lunch"){
-            document.getElementById("lunch-meals-list").appendChild(row);
-        }
-        else if(meal.time === "Dinner"){
-            document.getElementById("dinner-meals-list").appendChild(row);
-        }
-    }
+     }
+     else{
+        document.getElementById("breakfast-meals-list").innerHTML = "";
+        document.getElementById("lunch-meals-list").innerHTML = "";
+        document.getElementById("dinner-meals-list").innerHTML = "";
+     }
 }
 
 window.addEventListener("load", async function (){
