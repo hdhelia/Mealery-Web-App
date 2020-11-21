@@ -25,7 +25,7 @@ app.get('/restaurants',(req,res) =>{
 });
 
 
-app.get('/info/restaurant',(req,res) =>{
+app.get('/info/*',(req,res) =>{
     const fake = {
         name:"Pita Dockets",
         image:"../images/restaurant-pics/pitapockets.jpg",
@@ -100,13 +100,17 @@ app.get('/info/restaurant',(req,res) =>{
         ]
 
     };
+    const url = req.url;
+    const restaurant = url.substring(url.lastIndexOf('/')+1);
+
 
     res.write(JSON.stringify(fake));
     res.end();
 });
 
 
-app.get('/info/restaurant',(req,res) =>{
+app.get('/info/',(req,res) =>{
+    console.log("anything");
     const fake = {
         name:"Pita Dockets",
         image:"../images/restaurant-pics/pitapockets.jpg",
@@ -153,7 +157,7 @@ app.get('/info/restaurant',(req,res) =>{
 
     };
 
-    res.write(JSON.stringify(fake));
+    //res.write(JSON.stringify(fake));
     res.end();
 });
 

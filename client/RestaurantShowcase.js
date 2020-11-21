@@ -37,7 +37,7 @@ function loading(){
     }
 
    //To be used later with database: const restaurant_name =  window.location.pathname.substring(window.location.pathname.lastIndexOf('/'));
-    const restaurant_name = "restaurant";
+    const restaurant_name = "4";
     const restaurant_info = (async()=>getInfo(restaurant_name))();
 
     //function to render the page
