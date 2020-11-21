@@ -3,8 +3,8 @@
 window.addEventListener("load", async function(){
     const rest_id = localStorage.rest_id; //*********IMP REMEMBER TO CHANGE THIS
 
-    // fake rest_id = 123 for testing in milestone 1
-    const profileEndpoint = "/restaurant/123/profile" ;
+    // test rest_id = 2
+    const profileEndpoint = "/restaurant/2/profile" ;
     const response = await fetch(profileEndpoint);
     if (!response.ok) {
         console.log(response.error);
@@ -19,19 +19,16 @@ window.addEventListener("load", async function(){
     document.getElementById("inputPhone").value = profile.ph;
 
     document.getElementById("inputEmail").value = profile.email;
-    document.getElementById("inputPass").value = profile.pass;
+    // document.getElementById("inputPass").value = profile.pass;
 });
 
-document.getElementById("save").addEventListener("click", async () => {
+document.getElementById("save1").addEventListener("click", async () => {
     const name = document.getElementById("inputName").value;
     const desc = document.getElementById("inputDesc").value;
     const addr = document.getElementById("inputAdd").value;
     const ph = document.getElementById("inputPhone").value;
 
-    const email = document.getElementById("inputEmail").value;
-    const pass = document.getElementById("inputPass").value;
-
-    await fetch("/restaurant/123/profile/update", {
+    await fetch("/restaurant/2/profile-general/update", {
         method: 'POST',
         headers: {
           'Accept': 'application/json',
@@ -43,8 +40,24 @@ document.getElementById("save").addEventListener("click", async () => {
             add: addr,
             ph: ph,
             email: email,
-            pass: pass
+            // pass: pass
         })
       });
 });
 
+document.getElementById("save2").addEventListener("click", async function(){
+    const email = document.getElementById("inputEmail").value;
+    // const pass = document.getElementById("inputPass").value;
+
+    await fetch("/restaurant/2/profile-account/update", {
+        method: 'POST',
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            email: email,
+            // pass: pass
+        })
+      });
+})
