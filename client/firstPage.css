@@ -2,10 +2,6 @@
     background-color: #610345;
 }
 
-.whiteColor{
-    color: white;
-}
-
 #Headline-Page{
     /* color: burlywood; */
     color : #610345;
@@ -23,6 +19,7 @@
 }
 
 .signUpSignInText{
+    font-size: large;
     color: #BBB5BD;
     display: inline;
     margin: 10px;
@@ -100,8 +97,30 @@
     margin: 20px;
 }
 
+.margin5{
+    margin: 5px;
+}
+
 /* All borders */
 
 .borderAroundMe{
     border: 1px solid black;
+}
+
+/* All colors */
+
+.whiteColor{
+    color: white;
+}
+
+.primaryColor{
+    color :  #610345;
+}
+
+.secondaryColor{
+    color : #BBB5BD;
+}
+
+.tertiaryColor{
+    color: #F64C72;
 }
