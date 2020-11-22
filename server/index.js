@@ -133,7 +133,14 @@ app.get('/customer/profile/', (req, res)=>{
 });
 
 app.post('/signup',(req,res) =>{
-    
+    let body = '';
+    req.on('data', data => body += data);
+    req.on('end', async () => {
+        const data = JSON.parse(body);
+        console.log(data.name);
+        res.writeHead(200);
+        res.end();
+    });
 });
 
 app.post('/login',(req,res) =>{
