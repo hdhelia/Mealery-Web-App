@@ -27,81 +27,81 @@ app.get('/restaurants',(req,res) =>{
 
 
 app.get('/info/*',async (req,res) =>{
-    const fake = {
-        name:"Pita Dockets",
-        image:"../images/restaurant-pics/pitapockets.jpg",
-        stars:4.5,
-        description:"Mock description alert! What do you get when you combine a budget pita pockets with a generic template? Me!",
-        reviews:[
-            {   
-                image:"../images/profile-pics/default-profile-pic.png",
-                stars:3.5,
-                text:"Never eaten the food here, but love the website!",
-            },
-            {   
-                image:"../images/profile-pics/default-profile-pic.png",
-                stars:3.5,
-                text:"Never eaten the food here, but love the website!",
-            },{   
-                image:"../images/profile-pics/default-profile-pic.png",
-                stars:3.5,
-                text:"Never eaten the food here, but love the website!",
-            },{   
-                image:"../images/profile-pics/default-profile-pic.png",
-                stars:3.5,
-                text:"Never eaten the food here, but love the website!",
-            },{   
-                image:"../images/profile-pics/default-profile-pic.png",
-                stars:3.5,
-                text:"Never eaten the food here, but love the website!",
-            },{   
-                image:"../images/profile-pics/default-profile-pic.png",
-                stars:3.5,
-                text:"Never eaten the food here, but love the website!",
-            },{   
-                image:"../images/profile-pics/default-profile-pic.png",
-                stars:3.5,
-                text:"Never eaten the food here, but love the website!",
-            },{   
-                image:"../images/profile-pics/default-profile-pic.png",
-                stars:3.5,
-                text:"Never eaten the food here, but love the website!",
-            },
-        ],
-        Breakfast:[
-            {
-                name:"Meal sample",
-                image:"./images/restaurant-pics/sample-img.jpg",
-                description:"Here is a mock description that makes you want to buy this meal"
-            },
-            {
-                name:"Meal sample",
-                image:"./images/restaurant-pics/sample-img.jpg",
-                description:"Here is a mock description that makes you want to buy this meal"
-            },
-            {
-                name:"Meal sample",
-                image:"./images/restaurant-pics/sample-img.jpg",
-                description:"Here is a mock description that makes you want to buy this meal"
-            },
-        ],
+    // const fake = {
+    //     name:"Pita Dockets",
+    //     image:"../images/restaurant-pics/pitapockets.jpg",
+    //     stars:4.5,
+    //     description:"Mock description alert! What do you get when you combine a budget pita pockets with a generic template? Me!",
+    //     reviews:[
+    //         {   
+    //             image:"../images/profile-pics/default-profile-pic.png",
+    //             stars:3.5,
+    //             text:"Never eaten the food here, but love the website!",
+    //         },
+    //         {   
+    //             image:"../images/profile-pics/default-profile-pic.png",
+    //             stars:3.5,
+    //             text:"Never eaten the food here, but love the website!",
+    //         },{   
+    //             image:"../images/profile-pics/default-profile-pic.png",
+    //             stars:3.5,
+    //             text:"Never eaten the food here, but love the website!",
+    //         },{   
+    //             image:"../images/profile-pics/default-profile-pic.png",
+    //             stars:3.5,
+    //             text:"Never eaten the food here, but love the website!",
+    //         },{   
+    //             image:"../images/profile-pics/default-profile-pic.png",
+    //             stars:3.5,
+    //             text:"Never eaten the food here, but love the website!",
+    //         },{   
+    //             image:"../images/profile-pics/default-profile-pic.png",
+    //             stars:3.5,
+    //             text:"Never eaten the food here, but love the website!",
+    //         },{   
+    //             image:"../images/profile-pics/default-profile-pic.png",
+    //             stars:3.5,
+    //             text:"Never eaten the food here, but love the website!",
+    //         },{   
+    //             image:"../images/profile-pics/default-profile-pic.png",
+    //             stars:3.5,
+    //             text:"Never eaten the food here, but love the website!",
+    //         },
+    //     ],
+    //     Breakfast:[
+    //         {
+    //             name:"Meal sample",
+    //             image:"./images/restaurant-pics/sample-img.jpg",
+    //             description:"Here is a mock description that makes you want to buy this meal"
+    //         },
+    //         {
+    //             name:"Meal sample",
+    //             image:"./images/restaurant-pics/sample-img.jpg",
+    //             description:"Here is a mock description that makes you want to buy this meal"
+    //         },
+    //         {
+    //             name:"Meal sample",
+    //             image:"./images/restaurant-pics/sample-img.jpg",
+    //             description:"Here is a mock description that makes you want to buy this meal"
+    //         },
+    //     ],
         
-        Lunch:[
-            {
-                name:"Meal sample",
-                image:"../images/restaurant-pics/sample-img.jpg",
-                description:"Here is a mock description that makes you want to buy this meal"
-            },
-        ],
-        Dinner:[
-            {
-                name:"Meal sample",
-                image:"../images/restaurant-pics/sample-img.jpg",
-                description:"Here is a mock description that makes you want to buy this meal"
-            },
-        ]
+    //     Lunch:[
+    //         {
+    //             name:"Meal sample",
+    //             image:"../images/restaurant-pics/sample-img.jpg",
+    //             description:"Here is a mock description that makes you want to buy this meal"
+    //         },
+    //     ],
+    //     Dinner:[
+    //         {
+    //             name:"Meal sample",
+    //             image:"../images/restaurant-pics/sample-img.jpg",
+    //             description:"Here is a mock description that makes you want to buy this meal"
+    //         },
+    //     ]
 
-    };
+    // };
     const url = req.url;
     const restaurant = url.substring(6);
 
