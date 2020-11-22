@@ -154,3 +154,6 @@ select.addEventListener("change", async function(){
     renderMealCards();
 });
 
+document.getElementById("home-link").href = "/restaurant/2";
+document.getElementById("cust-list-link").href = "/restaurant/cust_list/2";
+document.getElementById("profile-link").href = "/restaurant/profile/2";

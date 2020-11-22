@@ -36,7 +36,7 @@ async function getOrders(rest_id){
      */
     let queryResult;
     try{
-        queryResult = await connectAndRun(db => db.any(`SELECT orders FROM restaurants WHERE id = ${rest_id}`));
+        queryResult = await connectAndRun(db => db.any('SELECT orders FROM restaurants WHERE id = $1', rest_id));
     }
     catch(error){
         console.log(error);
@@ -48,7 +48,7 @@ async function getOrders(rest_id){
         for(order_obj of order_list[day]){
             let menu_list_str;
             try{
-                queryResult = await connectAndRun(db => db.any(`SELECT menu FROM restaurants WHERE id = ${rest_id}`));
+                queryResult = await connectAndRun(db => db.any('SELECT menu FROM restaurants WHERE id = $1', rest_id));
             }
             catch(error){
                 console.log(error);
@@ -72,7 +72,7 @@ async function getCustomerList(rest_id){
      */
     let queryResult;
     try{
-        queryResult = await connectAndRun(db => db.any(`SELECT customer_list FROM restaurants WHERE id = ${rest_id}`));
+        queryResult = await connectAndRun(db => db.any('SELECT customer_list FROM restaurants WHERE id = $1', rest_id));
     }
     catch(error){
         console.log(error);
@@ -83,7 +83,7 @@ async function getCustomerList(rest_id){
     for(id of list_of_ids){
         let querRes;
         try{
-            querRes = await connectAndRun(db => db.any(`SELECT * from customers WHERE id = ${id}`));
+            querRes = await connectAndRun(db => db.any('SELECT * from customers WHERE id = $1', id));
         }
         catch(error){
             console.log(error);
@@ -101,19 +101,19 @@ async function getRestProfile(rest_id){
     let queryResult;
     let name, desc, add, ph, email;
     try{
-        queryResult = await connectAndRun(db => db.any(`SELECT name FROM restaurants WHERE id = ${rest_id}`));
+        queryResult = await connectAndRun(db => db.any('SELECT name FROM restaurants WHERE id = $1',rest_id));
         name = queryResult[0].name; //since there'll only be one row with id=rest_id
 
-        queryResult = await connectAndRun(db => db.any(`SELECT description FROM restaurants WHERE id = ${rest_id}`)); 
+        queryResult = await connectAndRun(db => db.any('SELECT description FROM restaurants WHERE id = $1',rest_id)); 
         desc = queryResult[0].description; //since there'll only be one row with id=rest_id
 
-        queryResult = await connectAndRun(db => db.any(`SELECT addr FROM restaurants WHERE id = ${rest_id}`)); 
+        queryResult = await connectAndRun(db => db.any('SELECT addr FROM restaurants WHERE id = $1',rest_id)); 
         add = queryResult[0].addr; //since there'll only be one row with id=rest_id
 
-        queryResult = await connectAndRun(db => db.any(`SELECT phone_number FROM restaurants WHERE id = ${rest_id}`));
+        queryResult = await connectAndRun(db => db.any('SELECT phone_number FROM restaurants WHERE id = $1',rest_id));
         ph = queryResult[0].phone_number; //since there'll only be one row with id=rest_id
 
-        queryResult = await connectAndRun(db => db.any(`SELECT email FROM restaurants WHERE id = ${rest_id}`));
+        queryResult = await connectAndRun(db => db.any('SELECT email FROM restaurants WHERE id = $1', rest_id));
         email = queryResult[0].email; //since there'll only be one row with id=rest_id
     }
     catch(error){

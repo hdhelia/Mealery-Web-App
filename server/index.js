@@ -5,6 +5,7 @@ const app = express();
 const port = process.env.PORT || 8080;    
 const faker = require("faker");
 const database = require('./db.js');
+const path = require('path');
 
 app.use('/', express.static('client/'));
 
@@ -165,6 +166,18 @@ app.post('/signup',(req,res) =>{
 app.post('/login',(req,res) =>{
     
 });
+
+app.get('/restaurant/:rest_id', (req,res) => {
+    res.sendFile('restaurant_personal.html', {root: path.join(__dirname, "../client")});
+})
+
+app.get('/restaurant/cust_list/:rest_id', (req,res) => {
+    res.sendFile('restaurant_cust_list.html', {root: path.join(__dirname, "../client")});
+})
+
+app.get('/restaurant/profile/:rest_id', (req,res) => {
+    res.sendFile('restaurant_profile.html', {root: path.join(__dirname, "../client")});
+})
 
 app.get('/restaurant/:rest_id/orders', async (req,res) => {
     let orders;
