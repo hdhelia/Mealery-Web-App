@@ -25,6 +25,11 @@ const todayNumber = d.getDay();
 const select = document.getElementById("day-dropdown");
 
 async function renderMealCards(){
+
+    document.getElementById("breakfast-meals-list").innerHTML = "";
+    document.getElementById("lunch-meals-list").innerHTML = "";
+    document.getElementById("dinner-meals-list").innerHTML = "";
+
     let selectedDay = document.getElementById("day-dropdown").value;
     selectedDay = selectedDay === "Today" ? numToDay[todayNumber] : selectedDay;
 
@@ -113,11 +118,6 @@ async function renderMealCards(){
                 document.getElementById("dinner-meals-list").appendChild(row);
             }
         }
-     }
-     else{
-        document.getElementById("breakfast-meals-list").innerHTML = "";
-        document.getElementById("lunch-meals-list").innerHTML = "";
-        document.getElementById("dinner-meals-list").innerHTML = "";
      }
 }
 
