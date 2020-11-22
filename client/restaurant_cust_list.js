@@ -6,8 +6,17 @@ const rest_id = url.substring(url.lastIndexOf('/')+1);
 
 window.addEventListener("load", async function(){
 
-    const custListEndpoint = `/restaurant/${rest_id}/cust_list` ;
-    const response = await fetch(custListEndpoint);
+    let response = await fetch(`/restaurant/${rest_id}/profile`);
+    if (!response.ok) {
+        console.log(response.error);
+        return;
+    }
+
+    const profile = await response.json();
+
+    document.getElementById("restaurant-name").innerHTML = profile.name;
+
+    response = await fetch(`/restaurant/${rest_id}/cust_list`);
     if (!response.ok) {
         console.log(response.error);
         return;

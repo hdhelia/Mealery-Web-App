@@ -6,14 +6,15 @@ const rest_id = url.substring(url.lastIndexOf('/')+1);
 
 window.addEventListener("load", async function(){
 
-    const profileEndpoint = `/restaurant/${rest_id}/profile` ;
-    const response = await fetch(profileEndpoint);
+    const response = await fetch(`/restaurant/${rest_id}/profile` );
     if (!response.ok) {
         console.log(response.error);
         return;
     }
 
     const profile = await response.json();
+
+    document.getElementById("restaurant-name").innerHTML = profile.name;
 
     document.getElementById("inputName").value = profile.name;
     document.getElementById("inputDesc").value = profile.desc;

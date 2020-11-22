@@ -29,8 +29,7 @@ async function renderMealCards(){
     selectedDay = selectedDay === "Today" ? numToDay[todayNumber] : selectedDay;
 
 
-    const ordersListEndpoint = `/restaurant/${rest_id}/orders` ;
-    const response = await fetch(ordersListEndpoint);
+    const response = await fetch(`/restaurant/${rest_id}/orders`);
     if (!response.ok) {
         console.log(response.error);
         return;
@@ -123,6 +122,16 @@ async function renderMealCards(){
 }
 
 window.addEventListener("load", async function (){
+
+    const response = await fetch(`/restaurant/${rest_id}/profile`);
+    if (!response.ok) {
+        console.log(response.error);
+        return;
+    }
+
+    const profile = await response.json();
+
+    document.getElementById("restaurant-name").innerHTML = profile.name;
 
     let selectedDay;
     const todayOption = document.createElement("option");
