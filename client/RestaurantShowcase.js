@@ -37,7 +37,14 @@ function loading(){
     }
 
    //To be used later with database: const restaurant_name =  window.location.pathname.substring(window.location.pathname.lastIndexOf('/'));
-    const restaurant_name = "restaurant";
+    //change this to the hash code passed in through the url
+    const path = document.location.pathname
+
+    //restaurant id
+    let restaurant_name = path.substring(path.lastIndexOf('/')+1);
+    if(!Number(restaurant_name)){
+        restaurant_name = "3";
+    }
     const restaurant_info = (async()=>getInfo(restaurant_name))();
 
     //function to render the page
@@ -55,7 +62,6 @@ function loading(){
         link.href = "#reviews";
         link.classList.add('link');
         
-
         
         setStars(link,restaurant_info.stars, 2);
         link.appendChild(document.createElement('br'));
@@ -71,7 +77,6 @@ function loading(){
 
 
         //set image
-
         const topDecor = document.getElementById('top-decor');
 
         const restaurantImage = document.createElement('img');
@@ -282,21 +287,30 @@ function loading(){
         
         //breakfast menu
         breakfastDiv = document.getElementById('breakfast');
-        for(const meal of restaurant_info.breakfast){
+        if(!restaurant_info.Breakfast){
+            restaurant_info.Breakfast = [];
+        }
+        for(const meal of restaurant_info.Breakfast){
             breakfastDiv.appendChild(getMeal(meal));
             breakfastDiv.appendChild(document.createElement('br'));
         }
 
+        if(!restaurant_info.Lunch){
+            restaurant_info.Lunch = [];
+        }
         //lunch menu
         lunchDiv = document.getElementById('lunch');
-        for(const meal of restaurant_info.lunch){
+        for(const meal of restaurant_info.Lunch){
             lunchDiv.appendChild(getMeal(meal));
             lunchDiv.appendChild(document.createElement('br'));
         }
 
+        if(!restaurant_info.Dinner){
+            restaurant_info.Dinner = [];
+        }
         //dinner menu
         dinnerDiv = document.getElementById('dinner');
-        for(const meal of restaurant_info.dinner){
+        for(const meal of restaurant_info.Dinner){
             dinnerDiv.appendChild(getMeal(meal));
             dinnerDiv.appendChild(document.createElement('br'));
         }

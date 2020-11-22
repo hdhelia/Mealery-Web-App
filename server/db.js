@@ -79,7 +79,7 @@ async function getCustomerList(rest_id){
     } 
     list_of_ids_str = queryResult[0].customer_list; //since there'll only be one row with id=rest_id
     const list_of_ids = JSON.parse(list_of_ids_str);
-    const cust_list = []
+    const cust_list = [];
     for(id of list_of_ids){
         let querRes;
         try{
@@ -126,7 +126,7 @@ async function getRestProfile(rest_id){
         add: add,
         ph: ph,
         email: email
-    })
+    });
 }
 
 async function setGenProfile(rest_id, gen_profile){
@@ -153,6 +153,49 @@ async function setAccProfile(rest_id, acc_profile){
     }
 }
 
+async function getRestInfo(rest_id){
+    /*
+        function takes in restaurant id and return's restaurant's info object
+     */ 
+    let info = [];
+    try{
+        info = await db.any('select * from restaurants where id=$1',[rest_id]);
+        console.log(info);
+    }
+
+    catch(e){
+        console.log(e);
+    }
+    info = info[0];
+    //filling in the object details
+    let obj = {};
+    obj['name'] = info['name'];
+    obj['description'] = info['description'];
+    obj['image'] = ".."+info["image"];
+    const menu = JSON.parse(info['menu']);
+    obj['Breakfast'] = menu.Breakfast;
+    obj['Lunch'] = menu.Lunch;
+    obj['Dinner'] = menu.Dinner;
+    const reviews = JSON.parse(info['reviews']);
+
+    obj['reviews'] = reviews;
+
+    let avg = 0.0;
+
+    for(review of reviews){
+        avg += review.stars;
+    }
+
+    avg /= reviews.length;
+
+    //nearest 0.5
+    obj['stars'] = Math.round(avg*2)/2;
+
+    return obj;
+
+}
+
+exports.getRestInfo = getRestInfo;
 exports.getOrders = getOrders;
 exports.getCustomerList = getCustomerList;
 exports.getRestProfile = getRestProfile;
