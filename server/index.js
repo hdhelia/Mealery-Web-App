@@ -167,7 +167,7 @@ app.post('/login',(req,res) =>{
     
 });
 
-app.get('/restaurant/:rest_id', (req,res) => {
+app.get('/restaurant/home/:rest_id', (req,res) => {
     res.sendFile('restaurant_personal.html', {root: path.join(__dirname, "../client")});
 })
 

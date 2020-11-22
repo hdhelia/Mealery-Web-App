@@ -64,6 +64,6 @@ document.getElementById("save2").addEventListener("click", async function(){
       });
 })
 
-document.getElementById("home-link").href = `/restaurant/${rest_id}`;
+document.getElementById("home-link").href = `/restaurant/home/${rest_id}`;
 document.getElementById("cust-list-link").href = `/restaurant/cust_list/${rest_id}`;
 document.getElementById("profile-link").href = `/restaurant/profile/${rest_id}`;
