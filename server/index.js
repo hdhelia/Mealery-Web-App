@@ -121,6 +121,12 @@ app.get('/storefront/*', (req, res)=>{
     res.end();
 });
 
+app.get('/customer/profile/', (req, res)=>{
+    res.writeHead(200, {'ContentType':'text/html'});
+    res.write(readFileSync('client/UserProfile.html'))
+    res.end();
+});
+
 app.post('/signup',(req,res) =>{
     
 });
