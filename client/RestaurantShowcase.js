@@ -37,7 +37,8 @@ function loading(){
     }
 
    //To be used later with database: const restaurant_name =  window.location.pathname.substring(window.location.pathname.lastIndexOf('/'));
-    const restaurant_name = "4";
+    //change this to the hash code passed in through the url
+    const restaurant_name = "2";
     const restaurant_info = (async()=>getInfo(restaurant_name))();
 
     //function to render the page
@@ -280,11 +281,17 @@ function loading(){
         
         //breakfast menu
         breakfastDiv = document.getElementById('breakfast');
+        if(!restaurant_info.Breakfast){
+            restaurant_info.Breakfast = [];
+        }
         for(const meal of restaurant_info.Breakfast){
             breakfastDiv.appendChild(getMeal(meal));
             breakfastDiv.appendChild(document.createElement('br'));
         }
 
+        if(!restaurant_info.Lunch){
+            restaurant_info.Lunch = [];
+        }
         //lunch menu
         lunchDiv = document.getElementById('lunch');
         for(const meal of restaurant_info.Lunch){
@@ -292,6 +299,9 @@ function loading(){
             lunchDiv.appendChild(document.createElement('br'));
         }
 
+        if(!restaurant_info.Dinner){
+            restaurant_info.Dinner = [];
+        }
         //dinner menu
         dinnerDiv = document.getElementById('dinner');
         for(const meal of restaurant_info.Dinner){
