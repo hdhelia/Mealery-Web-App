@@ -38,7 +38,13 @@ function loading(){
 
    //To be used later with database: const restaurant_name =  window.location.pathname.substring(window.location.pathname.lastIndexOf('/'));
     //change this to the hash code passed in through the url
-    const restaurant_name = "2";
+    const path = document.location.pathname
+
+    //restaurant id
+    let restaurant_name = path.substring(path.lastIndexOf('/')+1);
+    if(!Number(restaurant_name)){
+        restaurant_name = "3";
+    }
     const restaurant_info = (async()=>getInfo(restaurant_name))();
 
     //function to render the page
