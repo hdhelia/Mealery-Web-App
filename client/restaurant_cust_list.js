@@ -55,7 +55,7 @@ window.addEventListener("load", async function(){
         name.innerHTML = customer.name;
         const addr = document.createElement("p");
         addr.classList.add("card-text");
-        addr.innerHTML = customer.addr;
+        addr.innerHTML = customer.address;
         const email = document.createElement("p");
         email.classList.add("card-text");
         email.innerHTML = customer.email;

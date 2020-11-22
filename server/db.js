@@ -107,8 +107,8 @@ async function getRestProfile(rest_id){
         queryResult = await connectAndRun(db => db.any('SELECT description FROM restaurants WHERE id = $1',rest_id)); 
         desc = queryResult[0].description; //since there'll only be one row with id=rest_id
 
-        queryResult = await connectAndRun(db => db.any('SELECT addr FROM restaurants WHERE id = $1',rest_id)); 
-        add = queryResult[0].addr; //since there'll only be one row with id=rest_id
+        queryResult = await connectAndRun(db => db.any('SELECT address FROM restaurants WHERE id = $1',rest_id)); 
+        add = queryResult[0].address; //since there'll only be one row with id=rest_id
 
         queryResult = await connectAndRun(db => db.any('SELECT phone_number FROM restaurants WHERE id = $1',rest_id));
         ph = queryResult[0].phone_number; //since there'll only be one row with id=rest_id
