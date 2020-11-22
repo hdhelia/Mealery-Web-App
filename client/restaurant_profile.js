@@ -30,38 +30,46 @@ document.getElementById("save1").addEventListener("click", async () => {
     const addr = document.getElementById("inputAdd").value;
     const ph = document.getElementById("inputPhone").value;
 
-    await fetch(`/restaurant/${rest_id}/profile-general/update`, {
-        method: 'POST',
-        headers: {
-          'Accept': 'application/json',
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-            name: name,
-            desc: desc,
-            add: addr,
-            ph: ph,
-            email: email,
-            // pass: pass
-        })
-      });
+    try{
+        await fetch(`/restaurant/${rest_id}/profile-general/update`, {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                name: name,
+                desc: desc,
+                add: addr,
+                ph: ph,
+            })
+          });
+    }
+    catch(error){
+        console.log("Error ocurred: ",error);
+    }
+    
 });
 
 document.getElementById("save2").addEventListener("click", async function(){
     const email = document.getElementById("inputEmail").value;
     // const pass = document.getElementById("inputPass").value;
 
-    await fetch(`/restaurant/${rest_id}/profile-account/update`, {
-        method: 'POST',
-        headers: {
-          'Accept': 'application/json',
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-            email: email,
-            // pass: pass
-        })
-      });
+    try{
+        await fetch(`/restaurant/${rest_id}/profile-account/update`, {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                email: email,
+                // pass: pass
+            })
+          });
+    }
+    catch(error){
+        console.log(error);
+    }
+    
 })
 
 document.getElementById("home-link").href = `/restaurant/home/${rest_id}`;

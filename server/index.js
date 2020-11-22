@@ -6,6 +6,10 @@ const port = process.env.PORT || 8080;
 const faker = require("faker");
 const database = require('./db.js');
 const path = require('path');
+const bp = require('body-parser')
+
+app.use(bp.json())
+app.use(bp.urlencoded({ extended: true }))
 
 app.use('/', express.static('client/'));
 
@@ -212,14 +216,25 @@ app.get("/restaurant/:rest_id/profile", async (req, res) => {
     res.send(profile);
 });
 
-app.post("/restaurant/:rest_id/profile-general/update", (req, res) => {
-    //**************IMP NEEDS TO BE FILLED IN---code to store req's body in db -- will be completed after milestone 2's submission
-    res.send({});
+app.post("/restaurant/:rest_id/profile-general/update", async (req, res) => {
+    try{
+        await database.setGenProfile(req.params['rest_id'], req.body);
+    }
+    catch(error){
+        console.log("Error with calling setGenProfile(): ",error);
+    }
+    
+    res.end();
 });
 
-app.post("/restaurant/:rest_id/profile-account/update", (req, res) => {
-    //**************IMP NEEDS TO BE FILLED IN---code to store req's body in db -- will be completed after milestone 2's submission
-    res.send({});
+app.post("/restaurant/:rest_id/profile-account/update", async (req, res) => {
+    try{
+        await database.setAccProfile(req.params['rest_id'], req.body);
+    }
+    catch(error){
+        console.log("Error with calling setAccProfile(): ", error);
+    }
+    res.end();
 });
 
 app.get("/customer/123/profile", (req, res) => {
@@ -237,7 +252,7 @@ app.get("/customer/123/profile", (req, res) => {
     }));
 });
 
-app.post("/restaurant/:rest_id/profile/update", (req, res) => {
+app.post("/customer/:cust_id/profile/update", (req, res) => {
     //**************IMP NEEDS TO BE FILLED IN---code to store req's body in db -- will be completed after milestone 2's submission
     res.send({});
 });

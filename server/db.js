@@ -129,6 +129,32 @@ async function getRestProfile(rest_id){
     })
 }
 
+async function setGenProfile(rest_id, gen_profile){
+    const name = gen_profile.name;
+    const desc = gen_profile.desc;
+    const add = gen_profile.add;
+    const ph = gen_profile.ph;
+
+    try{
+        await connectAndRun(db => db.none("UPDATE restaurants SET name = $1, description = $2, addr = $3, phone_number = $4 WHERE id = $5", [name, desc, add, ph, rest_id]));
+    }
+    catch(error){
+        console.log(error);
+    }
+}
+
+async function setAccProfile(rest_id, acc_profile){
+    const email = acc_profile.email;
+    try{
+        await connectAndRun(db => db.none("UPDATE restaurants SET email = $1 WHERE id = $2", [email, rest_id]));
+    }
+    catch(error){
+        console.log(error);
+    }
+}
+
 exports.getOrders = getOrders;
 exports.getCustomerList = getCustomerList;
 exports.getRestProfile = getRestProfile;
+exports.setGenProfile = setGenProfile;
+exports.setAccProfile = setAccProfile;
