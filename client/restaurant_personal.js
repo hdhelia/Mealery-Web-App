@@ -1,5 +1,8 @@
 // This is the javascript to render data supported componenents in the front end
 
+//extracting rest_id from the url
+const url = document.URL;
+const rest_id = url.substring(url.lastIndexOf('/')+1);
 
 /**
  * Code to fill out the day selector drop down correctly using some date library
@@ -22,14 +25,16 @@ const todayNumber = d.getDay();
 const select = document.getElementById("day-dropdown");
 
 async function renderMealCards(){
+
+    document.getElementById("breakfast-meals-list").innerHTML = "";
+    document.getElementById("lunch-meals-list").innerHTML = "";
+    document.getElementById("dinner-meals-list").innerHTML = "";
+
     let selectedDay = document.getElementById("day-dropdown").value;
     selectedDay = selectedDay === "Today" ? numToDay[todayNumber] : selectedDay;
 
-    const rest_id = localStorage.rest_id; //*********IMP REMEMBER TO CHANGE THIS
 
-    // test rest_id = 2
-    const ordersListEndpoint = "/restaurant/2/orders" ;
-    const response = await fetch(ordersListEndpoint);
+    const response = await fetch(`/restaurant/${rest_id}/orders`);
     if (!response.ok) {
         console.log(response.error);
         return;
@@ -114,14 +119,19 @@ async function renderMealCards(){
             }
         }
      }
-     else{
-        document.getElementById("breakfast-meals-list").innerHTML = "";
-        document.getElementById("lunch-meals-list").innerHTML = "";
-        document.getElementById("dinner-meals-list").innerHTML = "";
-     }
 }
 
 window.addEventListener("load", async function (){
+
+    const response = await fetch(`/restaurant/${rest_id}/profile`);
+    if (!response.ok) {
+        console.log(response.error);
+        return;
+    }
+
+    const profile = await response.json();
+
+    document.getElementById("restaurant-name").innerHTML = profile.name;
 
     let selectedDay;
     const todayOption = document.createElement("option");
@@ -154,3 +164,6 @@ select.addEventListener("change", async function(){
     renderMealCards();
 });
 
+document.getElementById("home-link").href = `/restaurant/home/${rest_id}`;
+document.getElementById("cust-list-link").href = `/restaurant/cust_list/${rest_id}`;
+document.getElementById("profile-link").href = `/restaurant/profile/${rest_id}`;
