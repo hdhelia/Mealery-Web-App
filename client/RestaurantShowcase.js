@@ -280,21 +280,21 @@ function loading(){
         
         //breakfast menu
         breakfastDiv = document.getElementById('breakfast');
-        for(const meal of restaurant_info.breakfast){
+        for(const meal of restaurant_info.Breakfast){
             breakfastDiv.appendChild(getMeal(meal));
             breakfastDiv.appendChild(document.createElement('br'));
         }
 
         //lunch menu
         lunchDiv = document.getElementById('lunch');
-        for(const meal of restaurant_info.lunch){
+        for(const meal of restaurant_info.Lunch){
             lunchDiv.appendChild(getMeal(meal));
             lunchDiv.appendChild(document.createElement('br'));
         }
 
         //dinner menu
         dinnerDiv = document.getElementById('dinner');
-        for(const meal of restaurant_info.dinner){
+        for(const meal of restaurant_info.Dinner){
             dinnerDiv.appendChild(getMeal(meal));
             dinnerDiv.appendChild(document.createElement('br'));
         }

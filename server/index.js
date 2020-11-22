@@ -68,7 +68,7 @@ app.get('/info/*',(req,res) =>{
                 text:"Never eaten the food here, but love the website!",
             },
         ],
-        breakfast:[
+        Breakfast:[
             {
                 name:"Meal sample",
                 image:"./images/restaurant-pics/sample-img.jpg",
@@ -85,14 +85,15 @@ app.get('/info/*',(req,res) =>{
                 description:"Here is a mock description that makes you want to buy this meal"
             },
         ],
-        lunch:[
+        
+        Lunch:[
             {
                 name:"Meal sample",
                 image:"../images/restaurant-pics/sample-img.jpg",
                 description:"Here is a mock description that makes you want to buy this meal"
             },
         ],
-        dinner:[
+        Dinner:[
             {
                 name:"Meal sample",
                 image:"../images/restaurant-pics/sample-img.jpg",
