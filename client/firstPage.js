@@ -22,5 +22,24 @@ window.onload  = function(){
 
     });
 
+    document.getElementById('login_button').addEventListener('click', async () => {
+        const emailInput = document.getElementById('email_label_login').value;
+        const passwordInput = document.getElementById('password_label_login').value;
+
+        const loginCheckEndpoint = '/login'
+        const response = await fetch(loginCheckEndpoint, {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json;charset=utf-8'
+            },
+            body: JSON.stringify({email : emailInput, password : passwordInput})
+        });
+
+        if(!response.ok){
+            window.alert('Could not login');
+        }
+
+    });
+
 
 };
