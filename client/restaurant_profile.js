@@ -1,10 +1,12 @@
 // This is the js to render the data in restaurant_profile.html
 
-window.addEventListener("load", async function(){
-    const rest_id = localStorage.rest_id; //*********IMP REMEMBER TO CHANGE THIS
+//extracting rest_id from the url
+const url = document.URL;
+const rest_id = url.substring(url.lastIndexOf('/')+1);
 
-    // test rest_id = 2
-    const profileEndpoint = "/restaurant/2/profile" ;
+window.addEventListener("load", async function(){
+
+    const profileEndpoint = `/restaurant/${rest_id}/profile` ;
     const response = await fetch(profileEndpoint);
     if (!response.ok) {
         console.log(response.error);
@@ -28,7 +30,7 @@ document.getElementById("save1").addEventListener("click", async () => {
     const addr = document.getElementById("inputAdd").value;
     const ph = document.getElementById("inputPhone").value;
 
-    await fetch("/restaurant/2/profile-general/update", {
+    await fetch(`/restaurant/${rest_id}/profile-general/update`, {
         method: 'POST',
         headers: {
           'Accept': 'application/json',
@@ -49,7 +51,7 @@ document.getElementById("save2").addEventListener("click", async function(){
     const email = document.getElementById("inputEmail").value;
     // const pass = document.getElementById("inputPass").value;
 
-    await fetch("/restaurant/2/profile-account/update", {
+    await fetch(`/restaurant/${rest_id}/profile-account/update`, {
         method: 'POST',
         headers: {
           'Accept': 'application/json',
@@ -62,6 +64,6 @@ document.getElementById("save2").addEventListener("click", async function(){
       });
 })
 
-document.getElementById("home-link").href = "/restaurant/2";
-document.getElementById("cust-list-link").href = "/restaurant/cust_list/2";
-document.getElementById("profile-link").href = "/restaurant/profile/2";
+document.getElementById("home-link").href = `/restaurant/${rest_id}`;
+document.getElementById("cust-list-link").href = `/restaurant/cust_list/${rest_id}`;
+document.getElementById("profile-link").href = `/restaurant/profile/${rest_id}`;

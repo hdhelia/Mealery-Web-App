@@ -1,10 +1,12 @@
 // This is the js to render the cards in restaurant_cust_list.html
 
-window.addEventListener("load", async function(){
-    const rest_id = localStorage.rest_id; //*********IMP REMEMBER TO CHANGE THIS
+//extracting rest_id from the url
+const url = document.URL;
+const rest_id = url.substring(url.lastIndexOf('/')+1);
 
-    // test rest_id = 2
-    const custListEndpoint = "/restaurant/2/cust_list" ;
+window.addEventListener("load", async function(){
+
+    const custListEndpoint = `/restaurant/${rest_id}/cust_list` ;
     const response = await fetch(custListEndpoint);
     if (!response.ok) {
         console.log(response.error);
@@ -70,6 +72,6 @@ window.addEventListener("load", async function(){
     }
 });
 
-document.getElementById("home-link").href = "/restaurant/2";
-document.getElementById("cust-list-link").href = "/restaurant/cust_list/2";
-document.getElementById("profile-link").href = "/restaurant/profile/2";
+document.getElementById("home-link").href = `/restaurant/${rest_id}`;
+document.getElementById("cust-list-link").href = `/restaurant/cust_list/${rest_id}`;
+document.getElementById("profile-link").href = `/restaurant/profile/${rest_id}`;

@@ -1,5 +1,8 @@
 // This is the javascript to render data supported componenents in the front end
 
+//extracting rest_id from the url
+const url = document.URL;
+const rest_id = url.substring(url.lastIndexOf('/')+1);
 
 /**
  * Code to fill out the day selector drop down correctly using some date library
@@ -25,10 +28,8 @@ async function renderMealCards(){
     let selectedDay = document.getElementById("day-dropdown").value;
     selectedDay = selectedDay === "Today" ? numToDay[todayNumber] : selectedDay;
 
-    const rest_id = localStorage.rest_id; //*********IMP REMEMBER TO CHANGE THIS
 
-    // test rest_id = 2
-    const ordersListEndpoint = "/restaurant/2/orders" ;
+    const ordersListEndpoint = `/restaurant/${rest_id}/orders` ;
     const response = await fetch(ordersListEndpoint);
     if (!response.ok) {
         console.log(response.error);
@@ -154,6 +155,6 @@ select.addEventListener("change", async function(){
     renderMealCards();
 });
 
-document.getElementById("home-link").href = "/restaurant/2";
-document.getElementById("cust-list-link").href = "/restaurant/cust_list/2";
-document.getElementById("profile-link").href = "/restaurant/profile/2";
+document.getElementById("home-link").href = `/restaurant/${rest_id}`;
+document.getElementById("cust-list-link").href = `/restaurant/cust_list/${rest_id}`;
+document.getElementById("profile-link").href = `/restaurant/profile/${rest_id}`;
