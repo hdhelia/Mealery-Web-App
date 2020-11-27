@@ -66,17 +66,16 @@ passport.deserializeUser((uid, done) => {
 app.use(bp.json())
 app.use(bp.urlencoded({ extended: true }))
 
-app.use('/', express.static('client'))
+// Endpoints =>
 
-app.get('/', (req, res) => {
-    console.log('Already logged in');
-    res.writeHead(200);
-    res.end();
-});
-
-app.get('/logout', (req, res) => {
-    req.logout(); // Logs us out!
-    res.redirect('/'); // back to login
+app.get('/', checkLoggedIn, (req, res) => {
+    const res_id = users[req.user][0];    // TODO : DB get user id. 
+    const userType = users[req.user][4];  // TODO : DB get user type. 
+      if(userType === 'C'){          
+          res.redirect('/customer/home/' + res_id);
+      }else{
+          res.redirect('/restaurant/home/'+ res_id);  
+      }
 });
 
 
@@ -84,39 +83,44 @@ app.get('/logout', (req, res) => {
 // If we successfully add a new user, go to /login, else, back to /register.
 // Use req.body to access data (as in, req.body['username']).
 // Use res.redirect to change URLs.
-//   app.post('/register',
-//        (req, res) => {
-//            const username = req.body['username'];
-//            const password = req.body['password'];
-//            if (addUser(username, password)) {
-//            res.redirect('/login');
-//            } else {
-//            res.redirect('/register');
-//            }
-//        });
+  app.post('/signup',
+       (req, res) => {
+           const username = req.body['username'];
+           const password = req.body['password'];
+           const name = req.body['name']
+           const type = req.body['type']
+           console.log(username)
+           console.log(password)
+           console.log(name)
+           console.log(type)
+           if (addUser(username, password)) {
+            res.redirect('/login');
+           } else {
+            res.redirect('/');
+           }
+       });
 
-     app.post('/signup',(req,res) =>{
-      let body = '';
-      req.on('data', data => body += data);
-      req.on('end', async () => {
-          const data = JSON.parse(body);
-          if(addUser(data.name, data.type, data.email, data.password)){
-              console.log("Successfully signed up")
-              res.writeHead(200);   // TODO : res.redirect()
-              res.end();
-          }else{
-              res.writeHead(409);
-              res.end();
-          }
-          
-      });
-  });
+app.get('/login',
+	(req, res) => {
+        res.sendFile('index.html', {root: path.join(__dirname, "../client")});
+        // const path = 'client/index.html';
+        // res.write(readFileSync(path));
+        // res.end();
+    });
   
   app.post('/login',
       passport.authenticate('local' , {     // use username/password authentication
-          'successRedirect' : '/restaurant/home/2',   // when we login, go to /private       // TODO : Change placeholder
-          'failureRedirect' : '/customers'      // otherwise, back to login
-      })
+        //   'successRedirect' : '/restaurant/home/2',   // when we login, go to /private       // TODO : Change placeholder
+          'failureRedirect' : '/login'      // otherwise, back to login
+      }), (req, res) => {
+        const res_id = users[req.user][0];    // TODO : DB get user id. 
+        const userType = users[req.user][4];  // TODO : DB get user type. 
+          if(userType === 'C'){          
+              res.redirect('/customer/home/' + res_id);
+          }else{
+              res.redirect('/restaurant/home/'+ res_id);  
+          }
+      }
   );
 
 
@@ -244,6 +248,10 @@ app.get('/restaurant/home/:rest_id', (req,res) => {
     res.sendFile('restaurant_personal.html', {root: path.join(__dirname, "../client")});
 })
 
+app.get('/customer/home/:rest_id', (req,res) => {
+    res.sendFile('index.html', {root: path.join(__dirname, "../client")});
+})
+
 app.get('/restaurant/cust_list/:rest_id', (req,res) => {
     res.sendFile('restaurant_cust_list.html', {root: path.join(__dirname, "../client")});
 })
@@ -326,6 +334,13 @@ app.post("/customer/:cust_id/profile/update", (req, res) => {
     res.send({});
 });
 
+app.get('/logout', (req, res) => {
+    req.logout(); // Logs us out!
+    res.redirect('/'); // back to login
+});
+
+app.use(express.static('client'));
+// app.use(express.static('images/front-page'));
 
 // Handles MIME types of css, javascript, html and image types(.png,.jpeg,.jpg etc).
 app.get('*',(req,res) =>{
@@ -352,14 +367,7 @@ app.listen(port, ()=>{
 });
 
 
-
-
-
-
-
-
-
-let users = { 'emery@gmail.com' : [ '123233', 'emery', 
+let users = { 'emery@gmail.com' : [ '12345', 'emery', 
     '2401f90940e037305f71ffa15275fb0d',
     '61236629f33285cbc73dc563cfc49e96a00396dc9e3a220d7cd5aad0fa2f3827d03d41d55cb2834042119e5f495fc3dc8ba3073429dd5a5a1430888e0d115250', 'C'
   ] };
@@ -375,12 +383,12 @@ let users = { 'emery@gmail.com' : [ '123233', 'emery',
   
   // TODO
   // Returns true iff the password is the one we have stored (in plaintext = bad but easy).
-  function validatePassword(username, pwd) {
+  function validatePassword(username, password) {
       if (!findUser(username)) { 
         return false;
       }
       // TODO CHECK PASSWORD
-      if(!mc.check(pwd, users[name][2], users[name][3])){   // TODO : DB read
+      if(!mc.check(password, users[username][2], users[username][3])){   // TODO : DB read
           return false;
       }
       return true;
@@ -388,15 +396,15 @@ let users = { 'emery@gmail.com' : [ '123233', 'emery',
   
   // Add a user to the "database".
   // TODO
-  function addUser(name, type, username, pwd) {
+  function addUser(username, password) {
       if (findUser(username)) {   
         return false;
       }
       // TODO SAVE THE SALT AND HASH
-      const [salt,hash] = mc.hash(pwd);  
+      const [salt,hash] = mc.hash(password);  
       const uniqueId = randomIdGenerator();
 
-      users[username] = [uniqueId, name, salt, hash, type];     // TODO : DB write
+      users[username] = [uniqueId, 'temp name', salt, hash, 'temp C'];     // TODO : DB write
       return true;
   }
   
@@ -405,10 +413,12 @@ let users = { 'emery@gmail.com' : [ '123233', 'emery',
   function checkLoggedIn(req, res, next) {
       if (req.isAuthenticated()) {
       // If we are authenticated, run the next route.
-      next();
+        console.log("Already logged in !");
+        next();
       } else {
       // Otherwise, redirect to the login page.
-      res.redirect('/');
+        console.log("Not logged in !");
+        res.redirect('/login');
       }
   }
   
@@ -459,14 +469,10 @@ let users = { 'emery@gmail.com' : [ '123233', 'emery',
 //           res.redirect('/private/');
 //           }
 //       });
-  
-app.use(express.static('html'));
 
 // Generates a 8 digit random number.
 function randomIdGenerator(){
     const num = Math.floor(Math.random() * 100000000);
     return num;
 }
-
-
 
