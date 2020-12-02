@@ -124,3 +124,15 @@
 .tertiaryColor{
     color: #F64C72;
 }
+
+#signIn{
+    text-decoration: none;
+}
+
+#logIn{
+    text-decoration: none;
+}
+
+#logout{
+    text-decoration: none;
+}
