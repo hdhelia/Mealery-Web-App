@@ -4,7 +4,7 @@
         <title>Mealery</title>
         
         <link rel="stylesheet" href="/firstPage.css">
-        <script src="/firstPage.js"></script>
+        <script src="/firstPage.js" defer></script>
 
         <!-- Required meta tags -->
         <meta charset="utf-8">
@@ -13,13 +13,15 @@
         <!-- Bootstrap CSS -->
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
-        <link rel="shortcut icon" href="../images/favicon.ico">
+        <link rel="shortcut icon" href="/images/favicon.ico">
     </head>
     <body>
         <div class = "row signInBar">
             <div class = "col">
                 <p id = "signIn" class = "signUpSignInText" data-toggle="modal" data-target="#SignUpModal">Sign up</p>
-                <p id = "login" class = "signUpSignInText" data-toggle="modal" data-target="#LoginModal">Login</p>
+                <p id = "logIn" class = "signUpSignInText" data-toggle="modal" data-target="#LoginModal">Login</p>
+                <p id = "welcomeUserMessage" class = "signUpSignInText">Hello User,</p>
+                <a id = "logout" class = "signUpSignInText" href = "/logout">Logout</a>
             </div>
         </div>
         <!-- Sign Up Modal -->
@@ -106,17 +108,14 @@
             <div id = "Restaurants-Section">
                 <h1 class = "heading1Padding Headline-Section">Restaurants</h1>
                 <div class = "row no-gutters" id  = "restaurantImgRow">
-                    <!-- <div class = "col">
-                        <img id = 'res_1' class = "img-hover-feature img-fluid img-thumbnail" src = "../images/front-page/res1Img.jpg" alt = "glass dining restaurant">
-                    </div> -->
                     <div class="col">
-                        <img class = "img-hover-feature img-fluid img-thumbnail" src = "/images/front-page/res2Img.jpg" alt = "tables and chairs restaurant">
+                        <a id = 'res1Link'><img id = "res1" class = "img-hover-feature img-fluid img-thumbnail" alt = "tables and chairs restaurant"></a>
                     </div>
                     <div class = "col">
-                        <img class = "img-hover-feature img-fluid img-thumbnail" src = "/images/front-page/res3Img.jpg" alt = "top view of a cafe">
+                        <a id = 'res2Link'><img id = "res2" class = "img-hover-feature img-fluid img-thumbnail" alt = "top view of a cafe"></a>
                     </div>
                     <div class="col">
-                        <img class = "img-hover-feature img-fluid img-thumbnail" src = "/images/front-page/res4Img.jpg" alt = "outside view of a colorful restaurant">
+                        <a id = 'res3Link'><img id = "res3" class = "img-hover-feature img-fluid img-thumbnail" alt = "outside view of a colorful restaurant"></a>
                     </div>
                 </div>
             </div>

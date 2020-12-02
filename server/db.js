@@ -195,6 +195,83 @@ async function getRestInfo(rest_id){
 
 }
 
+async function getUserDetailsGivenEmail(email){
+
+    let userDetails = [];
+    try{
+        userDetails = await db.any('SELECT * from credentials WHERE email = $1',[email]);
+    }catch(e){
+        console.log(e);
+    }
+
+    return userDetails[0]; // Returns the one and only query at index 0 since it is returned as an array.
+}
+
+async function checkIfUserExits(email){
+    let userDetails = [];
+    try{
+        userDetails = await db.any('SELECT * from credentials WHERE email = $1',[email]);
+    }catch(e){
+        console.log(e);
+    }
+
+    if(userDetails.length === 0){
+        console.log('db.js => Doesnot exists.');
+        return false;
+    }else{
+        return true;
+    }
+
+}
+
+async function updateDBWithPersonalInfo(uniqueId, email, name, salt, hash, type){
+    // Update Credentials Table
+    console.log('Before cred update');
+    try{
+        await db.none('INSERT INTO credentials (id, email, salt, hash, type) VALUES ($1,$2,$3,$4,$5)', [uniqueId,email,salt,hash,type]);
+    }catch(e){
+        console.log(e);
+    }
+
+    console.log("after cred update");
+
+    if (type === 'C'){  // Update Customers Table
+        try{
+            await db.none('INSERT INTO customers (id, name, phone_number, address, image, email) VALUES ($1,$2,null,null,null,$3)', [uniqueId,name,email]);
+        }catch(e){
+            console.log(e);
+        }
+
+        console.log('After customer update');
+
+    }else{   // Update Restaurants Table
+        try{
+            await db.none('INSERT INTO restaurants (id, name, description, address, email, phone_number, image, menu, customer_list,orders, reviews) VALUES ($1,$2,null,null,$3,null,null,null,null,null,null)', [uniqueId,name,email]);
+        }catch(e){
+            console.log(e);
+        }
+
+        console.log('After restaurant update');
+    }
+
+}
+
+async function getImagePhotosForFrontPage(){
+    let restList = [];
+    try{
+        resList = await db.any('SELECT id, image from restaurants ORDER BY image LIMIT 3');
+    }catch(e){
+        console.log(e);
+    }
+
+    return resList;
+
+}
+
+exports.getImagePhotosForFrontPage = getImagePhotosForFrontPage;
+exports.updateDBWithPersonalInfo = updateDBWithPersonalInfo;
+exports.checkIfUserExits = checkIfUserExits;
+exports.getUserDetailsGivenEmail = getUserDetailsGivenEmail;
 exports.getRestInfo = getRestInfo;
 exports.getOrders = getOrders;
 exports.getCustomerList = getCustomerList;
