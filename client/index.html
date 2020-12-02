@@ -3,8 +3,8 @@
     <head>
         <title>Mealery</title>
         
-        <link rel="stylesheet" href="firstPage.css">
-        <script src="firstPage.js"></script>
+        <link rel="stylesheet" href="/firstPage.css">
+        <script src="/firstPage.js" defer></script>
 
         <!-- Required meta tags -->
         <meta charset="utf-8">
@@ -13,13 +13,15 @@
         <!-- Bootstrap CSS -->
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
-        <link rel="shortcut icon" href="./images/favicon.ico">
+        <link rel="shortcut icon" href="/images/favicon.ico">
     </head>
     <body>
         <div class = "row signInBar">
             <div class = "col">
                 <p id = "signIn" class = "signUpSignInText" data-toggle="modal" data-target="#SignUpModal">Sign up</p>
-                <p id = "login" class = "signUpSignInText" data-toggle="modal" data-target="#LoginModal">Login</p>
+                <p id = "logIn" class = "signUpSignInText" data-toggle="modal" data-target="#LoginModal">Login</p>
+                <p id = "welcomeUserMessage" class = "signUpSignInText"></p>
+                <a id = "logout" class = "signUpSignInText" href = "/logout">Logout</a>
             </div>
         </div>
         <!-- Sign Up Modal -->
@@ -33,32 +35,33 @@
                 </button>
                 </div>
                 <div class="modal-body">
-                    <form>
+                    <form action = "/signup"  method = "post">
                         <div class="form-group">
                             <label for="name_label_signUp">Name</label>
-                            <input type="text" class="form-control" id="name_label_signUp" placeholder="Enter your name">
+                            <input name = 'name' type="text" class="form-control" id="name_label_signUp" placeholder="Enter your name">
                         </div>
                         <div class="form-group">
                         <label for="email_label_signUp">Email address</label>
-                        <input type="email" class="form-control" id="email_label_signUp" placeholder="name@example.com">
+                        <input name = "username" type="email" class="form-control" id="email_label_signUp" placeholder="name@example.com">
                         </div>
                         <div class="form-group">
                             <label for="password_label_signUp">Password</label>
-                            <input type="password" class="form-control" id="password_label_signUp" placeholder="Enter a password">
+                            <input name = "password" type="password" class="form-control" id="password_label_signUp" placeholder="Enter a password">
                         </div>
                         <div class="form-group">
                         <label for="type_signUp">Sign up as</label>
-                        <select class="form-control" id="type_signUp">
+                        <select name = 'type' class="form-control" id="type_signUp">
                             <option>Customer</option>
                             <option>Restaurant</option>
                         </select>
                         </div>
+                        <div class="modal-footer">
+                            <button id = 'sign_up_button' type="submit" class="btn btn-primary">Sign up</button>
+                        </div>
                     </form>
                     
                 </div>
-                <div class="modal-footer">
-                <button type="button" class="btn btn-primary">Sign up</button>
-                </div>
+                
             </div>
             </div>
         </div>
@@ -74,20 +77,19 @@
                 </button>
                 </div>
                 <div class="modal-body">
-                    <form>
+                    <form action = "/login" method = "post">
                         <div class="form-group">
                         <label for="email_label_login">Email address</label>
-                        <input type="email" class="form-control" id="email_label_login" placeholder="name@example.com">
+                        <input name = "username" type="email" class="form-control" id="email_label_login" placeholder="name@example.com">
                         </div>
                         <div class="form-group">
                             <label for="password_label_login">Password</label>
-                            <input type="password" class="form-control" id="password_label_login" placeholder="Enter a password">
+                            <input name = "password" type="password" class="form-control" id="password_label_login" placeholder="Enter a password">
+                        </div>
+                        <div class="modal-footer">
+                            <button id = 'login_button' type="submit" class="btn btn-primary">Login</button>
                         </div>
                     </form>
-                    
-                </div>
-                <div class="modal-footer">
-                <button type="button" class="btn btn-primary">Login</button>
                 </div>
             </div>
             </div>
@@ -106,17 +108,14 @@
             <div id = "Restaurants-Section">
                 <h1 class = "heading1Padding Headline-Section">Restaurants</h1>
                 <div class = "row no-gutters" id  = "restaurantImgRow">
-                    <div class = "col">
-                        <img id = 'res_1' class = "img-hover-feature img-fluid img-thumbnail" src = "images/front-page/res1Img.jpg" alt = "glass dining restaurant">
-                    </div>
                     <div class="col">
-                        <img class = "img-hover-feature img-fluid img-thumbnail" src = "images/front-page/res2Img.jpg" alt = "tables and chairs restaurant">
+                        <a id = 'res1Link'><img id = "res1" class = "img-hover-feature img-fluid img-thumbnail" alt = "tables and chairs restaurant"></a>
                     </div>
                     <div class = "col">
-                        <img class = "img-hover-feature img-fluid img-thumbnail" src = "images/front-page/res3Img.jpg" alt = "top view of a cafe">
+                        <a id = 'res2Link'><img id = "res2" class = "img-hover-feature img-fluid img-thumbnail" alt = "top view of a cafe"></a>
                     </div>
                     <div class="col">
-                        <img class = "img-hover-feature img-fluid img-thumbnail" src = "images/front-page/res4Img.jpg" alt = "outside view of a colorful restaurant">
+                        <a id = 'res3Link'><img id = "res3" class = "img-hover-feature img-fluid img-thumbnail" alt = "outside view of a colorful restaurant"></a>
                     </div>
                 </div>
             </div>
@@ -127,25 +126,25 @@
                         <div class="card marginTop5 ">
                             <div class="card-body">
                               <h5 class="card-title">User XYZ</h5>
-                              <p class="card-text">The website has helped me in getting food delivered on a timely basis for the past 2 months. Very thankful to this services.</p>
+                              <p id = 'userReview1' class="card-text"></p>
                             </div>
                           </div>
                           <div class="card marginTop5 ">
                             <div class="card-body">
                               <h5 class="card-title">User XYZ</h5>
-                              <p class="card-text">The website has helped me in getting food delivered on a timely basis for the past 2 months. Very thankful to this services.</p>
+                              <p id = 'userReview2' class="card-text"></p>
                             </div>
                           </div>
                           <div class="card marginTop5 ">
                             <div class="card-body">
                               <h5 class="card-title">User XYZ</h5>
-                              <p class="card-text">The website has helped me in getting food delivered on a timely basis for the past 2 months. Very thankful to this services.</p>
+                              <p id = 'userReview3' class="card-text"></p>
                             </div>
                           </div>
 
                     </div>
                     <div class = "col-4 align-self-center">
-                        <img src = "images/front-page/satisfactionImage.png" class="img-fluid" alt = "100% satisfaction image">
+                        <img src = "/images/front-page/satisfactionImage.png" class="img-fluid" alt = "100% satisfaction image">
                     </div>
                 </div>
             </div>

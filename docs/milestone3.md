@@ -1,11 +1,38 @@
 # Database 
-Table 1: restaurants (id int PRIMARY KEY, name varchar(225), description varchar(225), addr varchar(225), email varchar(225), phone_number varchar(225), image varchar(225), menu varchar(600), customer_list varchar(600), orders varchar(600), reviews VARCHAR(600))
 
-Table 2: customers (id int PRIMARY KEY, name varchar(225), phone_number varchar(225), addr varchar(225), image varchar(225), email varchar(225))
+## Restaurants table
+| Column       | Data Type | Description              |
+|--------------|-----------|--------------------------|
+| id           | Integer   | restaurant id (primary-key) |
+| name         | String    | name of the restaurant   |
+| description  | String    | description of the restaurant   |
+| address      | String    | address of the restaurant   |
+| email        | String    | email of the restaurant   |
+| phone_number | String    | phone number of the restaurant   |
+| image         | String    | path to restaurant's pic   |
+| menu         | JSON String    | dictionary of time of meal i.e. breakfast, etc (key) and list of meals (value). Meal is a JSON of name, image and description  |
+| customer_list| JSON String | List of ids of the restaurant's customers   |
+| orders      | JSON String    | dictionary of day (key) and list of orders (value). Order is a JSON of time of the meal and name   |
+| reviews         | JSON strings    | list of dictionaries containing the number of stars and the review   |
 
-Table 3: credentials(id int PRIMARY KEY, email varchar(225), salt varchar(225), hash varchar(225), type varchar(1))
+## Customers table
+| Column       | Data Type | Description              |
+|--------------|-----------|--------------------------|
+| id           | Integer   | customer id (primary-key) |
+| name         | String    | name of the customer   |
+| phone_number | String    | phone number of the customer   |
+| address      | String    | address of the customer   |
+| image         | String    | path to customer's pic   |
+| email        | String    | email of the customer   |
 
-NOTE: type would be either 'C' or 'R' signifying customer or restaurant respectively
+## Credentials table
+| Column       | Data Type | Description              |
+|--------------|-----------|--------------------------|
+| id           | Integer   | customer/restaurant id (primary-key) |
+| email        | String    | email of the customer/restaurant   |
+| salt        | String    | salt for the restaurant/customer's encrypted password  |
+| hash        | String    | hash for the restaurant/customer's encrypted password   |
+| type      | String    | 'C' or 'R' to indicate user type |
 
 
 # Division of Labor

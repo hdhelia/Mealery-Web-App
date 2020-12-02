@@ -35,6 +35,7 @@ tertiary: #F64C72
     filter: contrast(50%);
     object-fit: none;
     border-bottom: 5px solid #F64C72;
+    z-index: -1;
 }
 /*name of restaurant properties*/
 #name-of-restaurant{

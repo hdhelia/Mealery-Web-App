@@ -21,7 +21,7 @@
 .signUpSignInText{
     font-size: large;
     color: #BBB5BD;
-    display: inline;
+    display: none;
     margin: 10px;
     font-weight: normal;
 }
