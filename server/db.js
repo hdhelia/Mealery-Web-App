@@ -265,9 +265,35 @@ async function getImagePhotosForFrontPage(){
     }
 
     return resList;
-
 }
 
+async function getUserNameFromId(id){
+    let userName = [];
+    try{
+        userName  = await db.one('SELECT name from customers where id = $1', [id]);
+    }catch(e){
+        console.log(e);
+    }
+
+    return userName;
+}
+
+async function getCustomerReviews(id){
+    let reviews = [];
+    try{
+        reviews  = await db.one('SELECT reviews from restaurants where id = $1', [id]);
+    }catch(e){
+        console.log(e);
+    }
+    
+    reviewMessage = (JSON.parse(reviews['reviews']))[0]['text'];
+
+    return reviewMessage;
+}
+
+
+exports.getCustomerReviews = getCustomerReviews;
+exports.getUserNameFromId = getUserNameFromId;
 exports.getImagePhotosForFrontPage = getImagePhotosForFrontPage;
 exports.updateDBWithPersonalInfo = updateDBWithPersonalInfo;
 exports.checkIfUserExits = checkIfUserExits;

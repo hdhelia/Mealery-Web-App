@@ -121,14 +121,23 @@ app.get('/login',
   );
 
 
-app.get('/customers',(req,res) =>{
-    res.write("List of customers");
+app.get('/customers', async (req,res) =>{
+    const id = 4;
+    const userReview = await database.getCustomerReviews(id);
+    res.write(JSON.stringify({review : userReview}));
     res.end();
 });
 
 app.get('/restaurants',async (req,res) =>{
     const srcOfRestaurants = await database.getImagePhotosForFrontPage();
     res.write(JSON.stringify(srcOfRestaurants));
+    res.end();
+});
+
+app.post('/userInfo', async (req,res) => {
+    const idUser = req.body['id'];
+    const userName = await database.getUserNameFromId(idUser);
+    res.write(JSON.stringify(userName));
     res.end();
 });
 
