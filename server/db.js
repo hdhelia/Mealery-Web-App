@@ -136,7 +136,7 @@ async function setGenProfile(rest_id, gen_profile){
     const ph = gen_profile.ph;
 
     try{
-        await connectAndRun(db => db.none("UPDATE restaurants SET name = $1, description = $2, addr = $3, phone_number = $4 WHERE id = $5", [name, desc, add, ph, rest_id]));
+        await connectAndRun(db => db.none("UPDATE restaurants SET name = $1, description = $2, address = $3, phone_number = $4 WHERE id = $5", [name, desc, add, ph, rest_id]));
     }
     catch(error){
         console.log(error);
