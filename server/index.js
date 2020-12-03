@@ -143,81 +143,6 @@ app.post('/userInfo', async (req,res) => {
 
 
 app.get('/info/*',async (req,res) =>{
-    // const fake = {
-    //     name:"Pita Dockets",
-    //     image:"../images/restaurant-pics/pitapockets.jpg",
-    //     stars:4.5,
-    //     description:"Mock description alert! What do you get when you combine a budget pita pockets with a generic template? Me!",
-    //     reviews:[
-    //         {   
-    //             image:"../images/profile-pics/default-profile-pic.png",
-    //             stars:3.5,
-    //             text:"Never eaten the food here, but love the website!",
-    //         },
-    //         {   
-    //             image:"../images/profile-pics/default-profile-pic.png",
-    //             stars:3.5,
-    //             text:"Never eaten the food here, but love the website!",
-    //         },{   
-    //             image:"../images/profile-pics/default-profile-pic.png",
-    //             stars:3.5,
-    //             text:"Never eaten the food here, but love the website!",
-    //         },{   
-    //             image:"../images/profile-pics/default-profile-pic.png",
-    //             stars:3.5,
-    //             text:"Never eaten the food here, but love the website!",
-    //         },{   
-    //             image:"../images/profile-pics/default-profile-pic.png",
-    //             stars:3.5,
-    //             text:"Never eaten the food here, but love the website!",
-    //         },{   
-    //             image:"../images/profile-pics/default-profile-pic.png",
-    //             stars:3.5,
-    //             text:"Never eaten the food here, but love the website!",
-    //         },{   
-    //             image:"../images/profile-pics/default-profile-pic.png",
-    //             stars:3.5,
-    //             text:"Never eaten the food here, but love the website!",
-    //         },{   
-    //             image:"../images/profile-pics/default-profile-pic.png",
-    //             stars:3.5,
-    //             text:"Never eaten the food here, but love the website!",
-    //         },
-    //     ],
-    //     Breakfast:[
-    //         {
-    //             name:"Meal sample",
-    //             image:"./images/restaurant-pics/sample-img.jpg",
-    //             description:"Here is a mock description that makes you want to buy this meal"
-    //         },
-    //         {
-    //             name:"Meal sample",
-    //             image:"./images/restaurant-pics/sample-img.jpg",
-    //             description:"Here is a mock description that makes you want to buy this meal"
-    //         },
-    //         {
-    //             name:"Meal sample",
-    //             image:"./images/restaurant-pics/sample-img.jpg",
-    //             description:"Here is a mock description that makes you want to buy this meal"
-    //         },
-    //     ],
-        
-    //     Lunch:[
-    //         {
-    //             name:"Meal sample",
-    //             image:"../images/restaurant-pics/sample-img.jpg",
-    //             description:"Here is a mock description that makes you want to buy this meal"
-    //         },
-    //     ],
-    //     Dinner:[
-    //         {
-    //             name:"Meal sample",
-    //             image:"../images/restaurant-pics/sample-img.jpg",
-    //             description:"Here is a mock description that makes you want to buy this meal"
-    //         },
-    //     ]
-
-    // };
     const url = req.url;
     const restaurant = url.substring(6);
 
@@ -266,12 +191,24 @@ app.get('/customer/home/:rest_id',checkLoggedIn, async (req,res) => {
     res.sendFile('index.html', {root: path.join(__dirname, "../client")});
 })
 
-app.get('/restaurant/cust_list/:rest_id', (req,res) => {
-    res.sendFile('restaurant_cust_list.html', {root: path.join(__dirname, "../client")});
+app.get('/restaurant/cust_list/:rest_id', async (req,res) => {
+    const userDetails = await database.getUserDetailsGivenEmail(req.user);
+        const resId = userDetails['id']; 
+    if (req.params.rest_id === JSON.stringify(resId)){    
+        res.sendFile('restaurant_cust_list.html', {root: path.join(__dirname, "../client")});
+    }else{
+        res.redirect('/restaurant/cust_list/' + resId); 
+    }
 })
 
-app.get('/restaurant/profile/:rest_id', (req,res) => {
-    res.sendFile('restaurant_profile.html', {root: path.join(__dirname, "../client")});
+app.get('/restaurant/profile/:rest_id', async (req,res) => {
+    const userDetails = await database.getUserDetailsGivenEmail(req.user);
+        const resId = userDetails['id']; 
+    if (req.params.rest_id === JSON.stringify(resId)){    
+        res.sendFile('restaurant_profile.html', {root: path.join(__dirname, "../client")});
+    }else{
+        res.redirect('/restaurant/profile/' + resId); 
+    }
 })
 
 app.get('/restaurant/:rest_id/orders', async (req,res) => {
