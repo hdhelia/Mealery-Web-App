@@ -9,7 +9,10 @@ const port = process.env.PORT || 8080;
 const faker = require("faker");
 const database = require('./db.js');
 const path = require('path');
-const bp = require('body-parser')
+const bp = require('body-parser');
+
+//copy of cart
+const cart = {"Monday":[{"img": "../images/restaurant-pics/bento.jpg", "title": "Meal Sample", "desc": "sample_desc", "time":"Breakfast"}]};
 
 const expressSession = require('express-session');  // for managing session state
 const passport = require('passport');               // handles authentication
@@ -253,6 +256,12 @@ app.post("/restaurant/:rest_id/profile-account/update", async (req, res) => {
     res.end();
 });
 
+app.get("/get/cart/items",async(req, res)=>{
+    res.writeHead(200,{'ContentType':'text/json'});
+    res.write(JSON.stringify(cart));
+    res.end();
+});
+
 app.get("/customer/123/profile", (req, res) => {
     res.send(JSON.stringify({
         name: faker.name.findName(),
@@ -267,6 +276,7 @@ app.get("/customer/123/profile", (req, res) => {
         card_name: faker.name.findName()
     }));
 });
+
 
 app.post("/customer/:cust_id/profile/update", (req, res) => {
     //**************IMP NEEDS TO BE FILLED IN---code to store req's body in db -- will be completed after milestone 2's submission

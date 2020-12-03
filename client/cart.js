@@ -28,12 +28,13 @@ async function renderMealCards(){
     let selectedDay = document.getElementById("day-dropdown").value;
     selectedDay = selectedDay === "Today" ? numToDay[todayNumber] : selectedDay;
 
-
-    const response = await fetch(`/restaurant/${rest_id}/orders`);
+    const response = await fetch('get/cart/items');
+    // const response = await fetch(`/restaurant/${rest_id}/orders`);
     if (!response.ok) {
         console.log(response.error);
         return;
     }
+
 
     const ordersList = await response.json();
 
@@ -52,6 +53,7 @@ async function renderMealCards(){
      */
 
      const currOrdersList = ordersList[selectedDay];
+     
      if(currOrdersList){
         for(const meal of currOrdersList){
             const row = document.createElement("div");
@@ -82,7 +84,7 @@ async function renderMealCards(){
             const title = document.createElement("div");
             title.classList.add("card-title");
             const h5 = document.createElement("h5");
-            h5.innerHTML = meal.name;
+            h5.innerHTML = meal.title;
             title.appendChild(h5);
             rowTitle.appendChild(title);
 
@@ -102,7 +104,6 @@ async function renderMealCards(){
             card.appendChild(rowCard);
 
             row.appendChild(card);
-
             if(meal.time === "Breakfast"){
                 document.getElementById("breakfast-meals-list").appendChild(row);
             }
