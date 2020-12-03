@@ -221,9 +221,11 @@ function loading(){
         }
 
         //menu rendering
-
+        
         //function to get meal card
-        function getMeal(meal){
+        function getMeal(meal, time){
+            //meal: JSON = {name:,image:,description:}
+            //time : str = "Breakfast", "Lunch" or "Dinner"
             let classes = ["row", "content"];
             
             const card = document.createElement("div");
@@ -273,10 +275,37 @@ function loading(){
             const addToCart = document.createElement('div');
             addToCart.classList.add('col');
 
+            //day selecting drop down
+
+            //days in the week
+            const days = ['Monday', 'Tuesday', 'Wednesday','Thursday','Friday', 'Saturday','Sunday'];
+
+            //defining drop down
+            classes = ['mt-2','custom-selector','day-selection'];
+            const day_selection = document.createElement('select');
+
+            //adding day options
+            days.forEach((data)=>{
+                const option = document.createElement('option');
+                const day = document.createTextNode(data);
+                option.appendChild(day);
+                day_selection.appendChild(option);
+            });
+
+            day_selection.classList.add(...classes);
+            addToCart.appendChild(day_selection);
+
             const button = document.createElement('button');
             classes = ["btn","btn-danger", "mt-5", "add-to-cart"];
             button.classList.add(...classes);
             button.innerHTML = "Add To Cart";
+            button.addEventListener('click',()=>{
+                const selectedDay = day_selection.value;
+                //Info to collect when adding to cart
+                //Using time of the meal to make the search quicker
+                const selectedInfo = [time, meal,selectedDay];
+                console.log(selectedInfo);
+            });
             addToCart.appendChild(button);
 
             rowCard.appendChild(addToCart);
@@ -291,7 +320,7 @@ function loading(){
             restaurant_info.Breakfast = [];
         }
         for(const meal of restaurant_info.Breakfast){
-            breakfastDiv.appendChild(getMeal(meal));
+            breakfastDiv.appendChild(getMeal(meal,"Breakfast"));
             breakfastDiv.appendChild(document.createElement('br'));
         }
 
@@ -301,7 +330,7 @@ function loading(){
         //lunch menu
         lunchDiv = document.getElementById('lunch');
         for(const meal of restaurant_info.Lunch){
-            lunchDiv.appendChild(getMeal(meal));
+            lunchDiv.appendChild(getMeal(meal, "Lunch"));
             lunchDiv.appendChild(document.createElement('br'));
         }
 
@@ -311,7 +340,7 @@ function loading(){
         //dinner menu
         dinnerDiv = document.getElementById('dinner');
         for(const meal of restaurant_info.Dinner){
-            dinnerDiv.appendChild(getMeal(meal));
+            dinnerDiv.appendChild(getMeal(meal, "Dinner"));
             dinnerDiv.appendChild(document.createElement('br'));
         }
         
