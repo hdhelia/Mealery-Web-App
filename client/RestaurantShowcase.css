@@ -4,7 +4,10 @@ primary: #610345
 secondary:#BBB5BD
 tertiary: #F64C72
 */
-
+.day-selection{
+    position: absolute;
+    right: 10%;
+}
 .primary-color{
     color:#610345;
 }
