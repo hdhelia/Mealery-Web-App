@@ -301,9 +301,14 @@ function loading(){
             button.innerHTML = "Add To Cart";
             button.addEventListener('click',()=>{
                 const selectedDay = day_selection.value;
-                //Info to collect when adding to cart
+
+                //copy of meal object
+                mealCopy = JSON.parse(JSON.stringify(meal));
                 //Using time of the meal to make the search quicker
-                const selectedInfo = [time, meal,selectedDay];
+                mealCopy['time'] = time;
+
+                //Info to collect when adding to cart
+                const selectedInfo = [mealCopy,selectedDay];
                 console.log(selectedInfo);
             });
             addToCart.appendChild(button);
