@@ -168,7 +168,7 @@ async function getRestInfo(rest_id){
     }
     info = info[0];
     //filling in the object details
-    let obj = {};
+    const obj = {};
     obj['name'] = info['name'];
     obj['description'] = info['description'];
     obj['image'] = ".."+info["image"];
@@ -257,7 +257,7 @@ async function updateDBWithPersonalInfo(uniqueId, email, name, salt, hash, type)
 }
 
 async function getImagePhotosForFrontPage(){
-    let restList = [];
+    const restList = [];
     try{
         resList = await db.any('SELECT id, image from restaurants ORDER BY image LIMIT 3');
     }catch(e){

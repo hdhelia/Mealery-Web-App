@@ -38,7 +38,7 @@ function loading(){
 
    //To be used later with database: const restaurant_name =  window.location.pathname.substring(window.location.pathname.lastIndexOf('/'));
     //change this to the hash code passed in through the url
-    const path = document.location.pathname
+    const path = document.location.pathname;
 
     //restaurant id
     let restaurant_name = path.substring(path.lastIndexOf('/')+1);

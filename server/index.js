@@ -69,8 +69,8 @@ passport.deserializeUser((uid, done) => {
     done(null, uid);
 });
 
-app.use(bp.json())
-app.use(bp.urlencoded({ extended: true }))
+app.use(bp.json());
+app.use(bp.urlencoded({ extended: true }));
 
 // Endpoints =>
 
@@ -94,7 +94,7 @@ app.get('/', checkLoggedIn, async (req, res) => {
        (req, res) => {
            const username = req.body['username'];
            const password = req.body['password'];
-           const name = req.body['name']
+           const name = req.body['name'];
            const type = req.body['type'].charAt(0);
            if (addUser(username, password, name, type)) {
             res.redirect('/login');
@@ -167,7 +167,7 @@ app.get('/storefront/*', (req, res)=>{
 
 app.get('/customer/profile/', (req, res)=>{
     res.writeHead(200, {'ContentType':'text/html'});
-    res.write(readFileSync('client/UserProfile.html'))
+    res.write(readFileSync('client/UserProfile.html'));
     res.end();
 });
 
@@ -180,7 +180,7 @@ app.get('/restaurant/home/:rest_id',checkLoggedIn, async (req,res) => {
     }else{
         res.redirect('/restaurant/home/' + resId); 
     }
-})
+});
 
 app.get('/customer/home/:rest_id',checkLoggedIn, async (req,res) => {
     const userDetails = await database.getUserDetailsGivenEmail(req.user);
@@ -192,7 +192,7 @@ app.get('/customer/home/:rest_id',checkLoggedIn, async (req,res) => {
     }
 
     res.sendFile('index.html', {root: path.join(__dirname, "../client")});
-})
+});
 
 app.get('/restaurant/cust_list/:rest_id', async (req,res) => {
     const userDetails = await database.getUserDetailsGivenEmail(req.user);
@@ -202,7 +202,7 @@ app.get('/restaurant/cust_list/:rest_id', async (req,res) => {
     }else{
         res.redirect('/restaurant/cust_list/' + resId); 
     }
-})
+});
 
 app.get('/restaurant/profile/:rest_id', async (req,res) => {
     const userDetails = await database.getUserDetailsGivenEmail(req.user);
@@ -212,7 +212,7 @@ app.get('/restaurant/profile/:rest_id', async (req,res) => {
     }else{
         res.redirect('/restaurant/profile/' + resId); 
     }
-})
+});
 
 app.get('/restaurant/:rest_id/orders', async (req,res) => {
     let orders;
@@ -277,7 +277,7 @@ app.get("/get/cart/items",async(req, res)=>{
 
 //endpoint to add cart items
 app.post("/add/cart",async(req, res)=>{
-    let info = (req.body);
+    const info = (req.body);
 
     const mealCopy = info[0];
     const day = info[1];
@@ -361,7 +361,7 @@ app.listen(port, ()=>{
 });
 
 
-let users = { 'emery@gmail.com' : [ '12345', 'emery', 
+const users = { 'emery@gmail.com' : [ '12345', 'emery', 
     '2401f90940e037305f71ffa15275fb0d',
     '61236629f33285cbc73dc563cfc49e96a00396dc9e3a220d7cd5aad0fa2f3827d03d41d55cb2834042119e5f495fc3dc8ba3073429dd5a5a1430888e0d115250', 'C'
   ] };

@@ -99,6 +99,7 @@ The tables share a primary key called id
 ![alt text](final-md-pics/routing.jpeg)
 ## Authentication
 ---
+There are two ways that the user can sign in/log in => As a Customer or as a restaurant owner. In order to implement the authentication, we have used passport and express-session. The users must provide the correct credentials (email and password) using which they are authenticated. Once logged in, users are directed to their respective user interface (separate endpoints for each of them). Users who go to the main page are redirected to their logged in dashboards if they had already logged in before. Once a customer logs in successfully, they are redirected to the endpoint (/customer/home/:res_id) with their unique res_id and similarly when a restaurant owner logs in successfully, they are redirected to the endpoint (/restaurant/home/:res_id).
 
 ## Division of Labor
 ---
@@ -120,3 +121,9 @@ The tables share a primary key called id
 
 ## Conclusion
 ---
+
+This project enabled us to exercise the web development theory we learnt in class.  In bridging the gap between the said theory and its practical application, we encountered numerous hurdles. Establishing communication between our different pages was troublesome. Authentication brought along with it its own difficulties. Communication between the pages and database posed a few issues too.
+
+We learnt how the server-client relation works and how we can organize our project files accordingly. We implemented routing and endpoint and understood how they are essential to a web app, making it more organized.  We understood the various other nuances of web development and debugging like the CORS errors.
+
+We learnt how a seemingly herculean task such as building a website like ours, no matter how tough and time consuming it may seem, can be accomplished by dividing it into milestones and smaller achievable goals spread across a certain time frame. 

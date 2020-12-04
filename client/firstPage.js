@@ -62,6 +62,6 @@ window.onload  = async function(){
 
     document.getElementById('cart-button').addEventListener('click',async()=>{
         const resp = await fetch('/cart');
-    })
+    });
 
 };

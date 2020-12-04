@@ -1,5 +1,5 @@
 //Temporary id
-const rest_id = 3
+const rest_id = 3;
 
 /**
  * Code to fill out the day selector drop down correctly using some date library

@@ -69,7 +69,7 @@ document.getElementById("save2").addEventListener("click", async function(){
         console.log(error);
     }
     
-})
+});
 
 document.getElementById("home-link").href = `/restaurant/home/${rest_id}`;
 document.getElementById("cust-list-link").href = `/restaurant/cust_list/${rest_id}`;
