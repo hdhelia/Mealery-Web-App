@@ -60,5 +60,8 @@ window.onload  = async function(){
         console.log(userReview.error);
     }
 
+    document.getElementById('cart-button').addEventListener('click',async()=>{
+        const resp = await fetch('/cart');
+    })
 
 };
