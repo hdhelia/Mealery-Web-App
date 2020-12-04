@@ -12,7 +12,7 @@ const path = require('path');
 const bp = require('body-parser');
 
 //copy of cart
-const cart = {"Monday":[{"img": "../images/restaurant-pics/bento.jpg", "title": "Meal Sample", "desc": "sample_desc", "time":"Breakfast"}]};
+const cart = {};
 
 const expressSession = require('express-session');  // for managing session state
 const passport = require('passport');               // handles authentication
@@ -287,6 +287,11 @@ app.post("/add/cart",async(req, res)=>{
     console.log(cart);
     res.writeHead(200);
     res.end();
+});
+
+//get cart
+app.get('/cart',(req, res)=>{
+    res.sendFile('cart.html', {root: path.join(__dirname, "../client")});
 });
 
 app.get("/customer/123/profile", (req, res) => {
