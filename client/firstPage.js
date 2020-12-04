@@ -23,7 +23,13 @@ window.onload  = async function(){
 
         document.getElementById('welcomeUserMessage').style.display = "inline";
         document.getElementById('logout').style.display = "inline";
+
+        //make cart button visible
+        document.getElementById('cart-button').style.display = 'inline';
     }else{
+        //make cart button invisible
+        document.getElementById('cart-button').style.display = 'none';
+
         document.getElementById('signIn').style.display = "inline";
         document.getElementById('logIn').style.display = "inline";
     }
