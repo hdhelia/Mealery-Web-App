@@ -34,7 +34,10 @@
             "prefer-const": [
                 "warn",
                 {}
-            ]
+            ],
+            "no-undef": "off",
+            "no-unused-vars": "off",
+            "no-mixed-spaces-and-tabs": "off"
         }
     },
     "dependencies": {

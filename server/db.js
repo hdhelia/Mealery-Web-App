@@ -20,14 +20,15 @@ async function connectAndRun(task) {
         connection = await db.connect();
         return await task(connection);
     } catch (e) {
-        throw e;
+        console.log(e);
     } finally {
         try {
             connection.done();
         } catch(ignored) {
-
+            console.log(ignored);
         }
     }
+    return -1;
 }
 
 async function getOrders(rest_id){
@@ -46,7 +47,7 @@ async function getOrders(rest_id){
 
     for(day in order_list){
         for(order_obj of order_list[day]){
-            let menu_list_str;
+            let menu_list_str = null;
             try{
                 queryResult = await connectAndRun(db => db.any('SELECT menu FROM restaurants WHERE id = $1', rest_id));
             }
