@@ -112,7 +112,7 @@ There are two ways that the user can sign in/log in => As a Customer or as a res
     - Made the orders dashboard, restaurant list page, the restaurant profile page
     - Worked on the server endpoints related to the aforementioned pages
     - Worked on the database calls related to the aforementioned pages
-- Siddharth Preetham (sid0913):
+- Siddharth Preetham (@sid0913):
     - Made the restaurant store front page and cart page
     - Set up the heroku app and maintained the heroku postgres database
     - Worked on the server endpoints related to the aforementioned pages
