@@ -301,6 +301,12 @@ app.post("/add/cart",async(req, res)=>{
     res.end();
 });
 
+//get cart
+app.get('/cart',(req, res)=>{
+    res.sendFile('cart.html', {root: path.join(__dirname, "../client")});
+});
+
+
 app.get("/customer/123/profile", (req, res) => {
     res.send(JSON.stringify({
         name: faker.name.findName(),
