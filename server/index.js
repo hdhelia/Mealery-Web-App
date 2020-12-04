@@ -12,7 +12,7 @@ const path = require('path');
 const bp = require('body-parser');
 
 //copy of cart
-const cart = {"Monday":[{"img": "../images/restaurant-pics/bento.jpg", "title": "Meal Sample", "desc": "sample_desc", "time":"Breakfast"}]};
+const cart = {};
 
 const expressSession = require('express-session');  // for managing session state
 const passport = require('passport');               // handles authentication
