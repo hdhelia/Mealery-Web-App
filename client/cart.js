@@ -29,7 +29,6 @@ async function renderMealCards(){
     selectedDay = selectedDay === "Today" ? numToDay[todayNumber] : selectedDay;
 
     const response = await fetch('get/cart/items');
-    // const response = await fetch(`/restaurant/${rest_id}/orders`);
     if (!response.ok) {
         console.log(response.error);
         return;

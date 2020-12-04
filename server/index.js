@@ -268,9 +268,36 @@ app.post("/restaurant/:rest_id/profile-account/update", async (req, res) => {
     res.end();
 });
 
+//endpoint to get cart items
 app.get("/get/cart/items",async(req, res)=>{
     res.writeHead(200,{'ContentType':'text/json'});
     res.write(JSON.stringify(cart));
+    res.end();
+});
+
+//endpoint to add cart items
+app.post("/add/cart",async(req, res)=>{
+    let info = (req.body);
+
+    const mealCopy = info[0];
+    const day = info[1];
+
+    //changing the field names of the object
+    meal = {};
+    meal['title'] = mealCopy['name'];
+    meal['desc'] = mealCopy['description'];
+    meal['img'] = mealCopy['image'];
+    meal['time'] = mealCopy['time'];
+
+    if(cart[day]){
+       cart[day].push(meal);
+    }
+    else{
+        cart[day] = [meal];
+    }
+    
+    console.log(cart);
+    res.writeHead(200);
     res.end();
 });
 

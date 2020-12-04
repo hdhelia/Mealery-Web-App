@@ -50,7 +50,6 @@ function loading(){
     //function to render the page
     function render(restaurant_info){
 
-        console.log(restaurant_info);
         
         //set name
         document.getElementById('name-of-restaurant').innerHTML = restaurant_info.name;
@@ -310,6 +309,24 @@ function loading(){
                 //Info to collect when adding to cart
                 const selectedInfo = [mealCopy,selectedDay];
                 console.log(selectedInfo);
+                async function sendItem(arr){
+                    try{
+                        resp = await fetch('/add/cart',{method:"POST", body:JSON.stringify(arr),headers:{"Content-type":"application/json"}});
+                        if(resp.ok){
+                            console.log('Added to cart!');
+                        }
+                        else{
+                            console.log('Could not add to cart!');
+                        }
+                    }
+                    catch(e){
+                        console.log(e);
+                    }
+                    
+                }
+
+                //sending info
+                (async ()=>sendItem(selectedInfo))();
             });
             addToCart.appendChild(button);
 
