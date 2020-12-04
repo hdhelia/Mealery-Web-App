@@ -130,15 +130,16 @@ font-weight: bolder;
 }
 
 .list-of-fields{
-    margin-left: 100px;
+    /* margin-left: 100px; */
+    margin-left: 18%;
 }
 
 #save1{
-    margin-left: 200px;
+    margin-left: 18%;
 }
 
 #save2{
-    margin-left: 200px;
+    margin-left: 18%;
 }
 
 /* Trying slide in animations */

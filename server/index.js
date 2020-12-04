@@ -194,12 +194,24 @@ app.get('/customer/home/:rest_id',checkLoggedIn, async (req,res) => {
     res.sendFile('index.html', {root: path.join(__dirname, "../client")});
 })
 
-app.get('/restaurant/cust_list/:rest_id', (req,res) => {
-    res.sendFile('restaurant_cust_list.html', {root: path.join(__dirname, "../client")});
+app.get('/restaurant/cust_list/:rest_id', async (req,res) => {
+    const userDetails = await database.getUserDetailsGivenEmail(req.user);
+        const resId = userDetails['id']; 
+    if (req.params.rest_id === JSON.stringify(resId)){    
+        res.sendFile('restaurant_cust_list.html', {root: path.join(__dirname, "../client")});
+    }else{
+        res.redirect('/restaurant/cust_list/' + resId); 
+    }
 })
 
-app.get('/restaurant/profile/:rest_id', (req,res) => {
-    res.sendFile('restaurant_profile.html', {root: path.join(__dirname, "../client")});
+app.get('/restaurant/profile/:rest_id', async (req,res) => {
+    const userDetails = await database.getUserDetailsGivenEmail(req.user);
+        const resId = userDetails['id']; 
+    if (req.params.rest_id === JSON.stringify(resId)){    
+        res.sendFile('restaurant_profile.html', {root: path.join(__dirname, "../client")});
+    }else{
+        res.redirect('/restaurant/profile/' + resId); 
+    }
 })
 
 app.get('/restaurant/:rest_id/orders', async (req,res) => {
@@ -293,6 +305,7 @@ app.post("/add/cart",async(req, res)=>{
 app.get('/cart',(req, res)=>{
     res.sendFile('cart.html', {root: path.join(__dirname, "../client")});
 });
+
 
 app.get("/customer/123/profile", (req, res) => {
     res.send(JSON.stringify({

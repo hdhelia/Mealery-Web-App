@@ -53,7 +53,6 @@ document.getElementById("save1").addEventListener("click", async () => {
 
 document.getElementById("save2").addEventListener("click", async function(){
     const email = document.getElementById("inputEmail").value;
-    // const pass = document.getElementById("inputPass").value;
 
     try{
         await fetch(`/restaurant/${rest_id}/profile-account/update`, {
@@ -63,7 +62,6 @@ document.getElementById("save2").addEventListener("click", async function(){
             },
             body: JSON.stringify({
                 email: email,
-                // pass: pass
             })
           });
     }
