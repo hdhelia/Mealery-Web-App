@@ -306,35 +306,12 @@ app.get('/cart',(req, res)=>{
     res.sendFile('cart.html', {root: path.join(__dirname, "../client")});
 });
 
-
-app.get("/customer/123/profile", (req, res) => {
-    res.send(JSON.stringify({
-        name: faker.name.findName(),
-        add: "32 CoolestProject St Amherst MA 01003",
-        ph: faker.phone.phoneNumber(),
-        email: faker.internet.email(),
-        pass: faker.internet.password(),
-        cardnum: faker.finance.creditCardNumber(),
-        cvv: faker.finance.creditCardCVV(),
-        zip: faker.address.zipCode(),
-        exp: faker.date.future(),
-        card_name: faker.name.findName()
-    }));
-});
-
-
-app.post("/customer/:cust_id/profile/update", (req, res) => {
-    //**************IMP NEEDS TO BE FILLED IN---code to store req's body in db -- will be completed after milestone 2's submission
-    res.send({});
-});
-
 app.get('/logout', (req, res) => {
     req.logout(); // Logs us out!
     res.redirect('/login'); // back to login
 });
 
 app.use(express.static('client'));
-// app.use(express.static('images/front-page'));
 
 // Handles MIME types of css, javascript, html and image types(.png,.jpeg,.jpg etc).
 app.get('*',(req,res) =>{
@@ -360,12 +337,6 @@ app.listen(port, ()=>{
     console.log("Mealery listening at "+port);
 });
 
-
-let users = { 'emery@gmail.com' : [ '12345', 'emery', 
-    '2401f90940e037305f71ffa15275fb0d',
-    '61236629f33285cbc73dc563cfc49e96a00396dc9e3a220d7cd5aad0fa2f3827d03d41d55cb2834042119e5f495fc3dc8ba3073429dd5a5a1430888e0d115250', 'C'
-  ] };
-  
   // Returns true iff the user exists.
 async function findUser(username) {
     const userExits = await database.checkIfUserExits(username);
